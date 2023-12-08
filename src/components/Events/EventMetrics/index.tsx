@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from "next/image";
+import styles from "./EventMetrics.module.scss";
 
 type Props = {
     value: any
@@ -8,9 +9,11 @@ type Props = {
     iconHSize: number
 };
 
-export function InfoFooterCard({value, icon, iconWSize, iconHSize}: Props) {
+
+
+export default function EventMetrics({value, icon, iconWSize, iconHSize}: Props) {
     return (
-        <div>
+        <div className={styles.wrap}>
             <Image
                 src={`/images/${icon}`}
                 alt="Icon"

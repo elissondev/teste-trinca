@@ -1,0 +1,44 @@
+.headerWrap {
+  margin-bottom: 45px;
+}
+
+.date {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.metrics {
+  margin-bottom: 25px;
+}
+
+.list {
+  margin-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #E5C231;
+}
+
+
+.participant, .contributionAmount {
+  font-size: 21px;
+  font-weight: 700;
+  margin-left: 20px;
+}
+
+.participant {
+  margin-left: 20px;
+}
+
+.contributionAmount {
+  margin-left: 30px;
+}
+
+.paid {
+  text-decoration: line-through;
+}

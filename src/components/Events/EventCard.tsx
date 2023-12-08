@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "@/app/agenda/eventos/Eventos.module.scss";
-import {InfoFooterCard} from "@/components/Events/InfoFooterCard";
+import EventMetrics from "@/components/Events/EventMetrics";
 import Card from "@/components/Card";
 import {IEvent} from "@/types";
 
@@ -8,17 +8,17 @@ import {IEvent} from "@/types";
 export function EventCard({date, title, numberOfUsers, value}: IEvent) {
     return (
         <div className={styles.wrap}>
-            <Card padding={24}>
+            <Card padding={"24px"}>
                 <h2 className={styles.date}>{date}</h2>
                 <p className={styles.title}>{title}</p>
                 <div className={styles.info}>
-                    <InfoFooterCard
+                    <EventMetrics
                         value={numberOfUsers}
                         icon="icon_people.png"
                         iconWSize={18}
                         iconHSize={15.3}
                     />
-                    <InfoFooterCard
+                    <EventMetrics
                         value={`R$${value}`}
                         icon="icon_money.png"
                         iconWSize={20}
