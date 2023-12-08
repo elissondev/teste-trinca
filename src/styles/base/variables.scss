@@ -3,4 +3,16 @@ $secondary-color: #000000;
 $background-color: #fafafa;
 
 $text-color: #000;
-$text-button-color: #fff
+$text-button-color: #fff;
+
+$container-width: 800px;
+
+$columns: 12;
+$gap: 30px;
+$breakpoints: (
+        xs: 480px,
+        sm: 768px,
+        md: 960px,
+        lg: 1170px,
+        xl: 1280px
+);

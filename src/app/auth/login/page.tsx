@@ -1,11 +1,13 @@
 "use client";
 import React, {FormEvent, useState} from 'react';
 import Link from 'next/link'
-import stylesAuth from '../Auth.module.scss'
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
+    const router = useRouter()
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState<boolean>(false)
@@ -14,12 +16,14 @@ export default function Login() {
         setLoading(true)
         e.preventDefault()
         // Lidar com os dados do formulário
-        setTimeout(() => setLoading(false), 2000)
+        setTimeout(() => {
+            router.push('/agenda/eventos')
+        }, 2000)
     };
 
     return (
         <>
-            <div className={stylesAuth.wrap}>
+            <div className="wrap">
 
                 <form onSubmit={handleSubmit}>
                     <Input
@@ -42,8 +46,7 @@ export default function Login() {
                     <Button type="submit" loading={loading}>Entrar</Button>
                 </form>
 
-                <Link className={stylesAuth.link} href="/auth/recuperar-senha">Esqueceu a senha?</Link>
-
+                <Link className="link" href="/auth/recuperar-senha">Esqueceu a senha?</Link>
 
             </div>
         </>

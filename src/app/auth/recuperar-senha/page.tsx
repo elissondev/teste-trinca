@@ -3,7 +3,6 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import React, {FormEvent, useState} from "react";
 import Link from "next/link";
-import stylesAuth from "@/app/auth/Auth.module.scss";
 
 export default function RecoverPassword() {
     const [email, setEmail] = useState('')
@@ -29,7 +28,7 @@ export default function RecoverPassword() {
 
             <Button type="submit" loading={loading}>Enviar nova senha</Button>
 
-            <Link className={stylesAuth.link} href="/auth/login">Lembrou a senha?</Link>
+            <Link className="link" href="/auth/login">Lembrou a senha?</Link>
         </form>
     </>
   )

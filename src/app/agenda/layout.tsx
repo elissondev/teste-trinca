@@ -3,13 +3,13 @@ import {IChildren} from "@/types";
 import stylesPage from '@/styles/pages/page.module.scss'
 import Image from "next/image";
 
-export default function AuthLayout({ children }: IChildren) {
+export default function AgendaLayout({ children }: IChildren) {
     return (
-        <div className={`header-page auth`}>
-            <div className={stylesPage.main}>
-                <h1 className="title">Agenda de Churras</h1>
+        <div className={`header-page panel`}>
+            <main className="main">
+                <h1 className="title text-center ">Agenda de Churras</h1>
                 {children}
-            </div>
+            </main>
 
             <Image
                 className="logo"

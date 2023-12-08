@@ -16,3 +16,10 @@ export interface FormProps {
     children: ReactNode;
     submitText: string
 }
+
+export interface IEvent {
+    date: string
+    title: string
+    numberOfUsers: number
+    value: number
+}
