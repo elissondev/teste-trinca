@@ -1,0 +1,100 @@
+// Box sizing border-box for all elements
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Remove default margin and padding
+html,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+button,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+// Normalize line heights
+body,
+button,
+input,
+select,
+textarea {
+  line-height: 1;
+}
+
+// Remove list styles (bullets/numbers)
+ol,
+ul {
+  list-style: none;
+}
+
+// Remove hyperlink text decoration
+a {
+  text-decoration: none;
+}
+
+// Remove text formatting inside the following elements
+abbr[title],
+dfn,
+mark,
+small,
+sub,
+sup {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+// Set default cursor for clickable elements
+a,
+button {
+  cursor: pointer;
+}

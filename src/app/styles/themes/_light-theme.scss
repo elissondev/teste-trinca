@@ -1,0 +1,7 @@
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --background-color: #{$background-color, 20};
+  --text-color: #{$text-color};
+  --text-button-color: #{$text-button-color}
+}
