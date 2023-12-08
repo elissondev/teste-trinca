@@ -21,8 +21,9 @@ export default function RecoverPassword() {
             <Input
                 label="Recuperar senha"
                 placeholder="Digite seu e-mail"
-                type="text"
+                type="email"
                 value={email}
+                required
                 onChange={e => setEmail(e.target.value)}
             />
 

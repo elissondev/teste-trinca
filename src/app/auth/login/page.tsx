@@ -25,8 +25,9 @@ export default function Login() {
                     <Input
                         label="Login"
                         placeholder="e-mail"
-                        type="text"
+                        type="email"
                         value={email}
+                        required
                         onChange={e => setEmail(e.target.value)}
                     />
                     <Input
@@ -34,6 +35,7 @@ export default function Login() {
                         placeholder="senha"
                         type="password"
                         value={password}
+                        required
                         onChange={e => setPassword(e.target.value)}
                     />
 
