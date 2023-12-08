@@ -47,7 +47,8 @@ export default function Events({params}: Props) {
                         _id={item._id}
                         name={item.name}
                         contributionAmount={item.contributionAmount}
-                        isItPaid={item.isItPaid} />
+                        isItPaid={item.isItPaid}
+                    />
                 ))}
 
             </Card>
