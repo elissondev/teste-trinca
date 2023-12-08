@@ -1,4 +1,4 @@
-import styles from '@/app/styles/pages/page.module.scss'
+import styles from '@/styles/pages/page.module.scss'
 
 export default function Events() {
     return (

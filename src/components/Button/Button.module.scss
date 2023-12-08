@@ -1,19 +1,19 @@
 .button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
+  display: block;
+  padding: 17px 20px;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 700;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   color: var(--text-button-color);
   background-color: var(--secondary-color);
-  border-radius: 5px;
+  border-radius: 18px;
   transition: all 200ms ease;
 
   &:hover {
-    background-color: var(--primary-color);
-    color: #000;
+    opacity: 0.8;
   }
 }
 

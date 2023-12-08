@@ -1,0 +1,30 @@
+.inputContainer {
+  margin-bottom: 36px;
+  width: 100%;
+}
+
+.label {
+  display: block;
+  margin-bottom: 16px;
+  font-weight: bold;
+  font-size: 21px;
+}
+
+.input {
+  width: 100%;
+  padding: 20px;
+  font-size: 18px;
+  border: 0;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: 50px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+
+  &::-ms-input-placeholder { /* Edge 12-18 */
+    font-style: italic;
+  }
+
+  &::placeholder {
+    font-style: italic;
+  }
+}

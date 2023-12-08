@@ -1,4 +1,4 @@
-import styles from '@/app/styles/pages/page.module.scss'
+import styles from '@/styles/pages/page.module.scss'
 interface Props {
     params: {
         id: string
