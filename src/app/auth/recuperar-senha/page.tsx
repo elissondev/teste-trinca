@@ -17,14 +17,16 @@ export default function RecoverPassword() {
   return (
     <>
         <form onSubmit={handleSubmit}>
-            <Input
-                label="Recuperar senha"
-                placeholder="Digite seu e-mail"
-                type="email"
-                value={email}
-                required
-                onChange={e => setEmail(e.target.value)}
-            />
+            <div className="form-control">
+                <Input
+                    label="Recuperar senha"
+                    placeholder="Digite seu e-mail"
+                    type="email"
+                    value={email}
+                    required
+                    onChange={e => setEmail(e.target.value)}
+                />
+            </div>
 
             <Button type="submit" loading={loading}>Enviar nova senha</Button>
 

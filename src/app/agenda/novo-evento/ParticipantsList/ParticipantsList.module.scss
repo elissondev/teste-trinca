@@ -2,6 +2,12 @@
   margin: 20px 0;
 }
 
+.headerList {
+  opacity: 0.6;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
 .listItem {
   border-bottom: 1px solid #E5C231;
   padding: 10px 0;
@@ -11,6 +17,10 @@
   &:hover .removeBtn {
     opacity: 1;
   }
+
+  label {
+   display: none;
+  }
 }
 
 .removeBtn {
@@ -19,4 +29,16 @@
   font-size: 16px;
   background-color: transparent;
   opacity: 0;
+  margin-top: 6px;
+}
+
+.input {
+  display: inline-block;
+  border: 0;
+  margin-bottom: 0;
+  background-color: #f1f1f1;
+  height: 25px;
+  border-radius: 5px;
+  padding: 0 10px;
+  width: 100%;
 }

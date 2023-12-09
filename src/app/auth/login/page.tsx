@@ -26,22 +26,26 @@ export default function Login() {
             <div className="wrap">
 
                 <form onSubmit={handleSubmit}>
-                    <Input
-                        label="Login"
-                        placeholder="e-mail"
-                        type="email"
-                        value={email}
-                        required
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                    <Input
-                        label="Senha"
-                        placeholder="senha"
-                        type="password"
-                        value={password}
-                        required
-                        onChange={e => setPassword(e.target.value)}
-                    />
+                    <div className="form-control">
+                        <Input
+                            label="Login"
+                            placeholder="e-mail"
+                            type="email"
+                            value={email}
+                            required
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-control">
+                        <Input
+                            label="Senha"
+                            placeholder="senha"
+                            type="password"
+                            value={password}
+                            required
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                    </div>
 
                     <Button type="submit" loading={loading}>Entrar</Button>
                 </form>

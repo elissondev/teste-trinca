@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import Select from 'react-select'
 import ParticipantsList from "@/app/agenda/novo-evento/ParticipantsList";
+import Button from "@/components/Button";
+import Link from "next/link";
 
 type Props = {
-
+    onBack: () => void
 };
 
-export function Participants(props: Props) {
+export default function Index({onBack}: Props) {
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedParticipants, setSelectedParticipants] = useState<{label: string, value: any}[]>([])
 
@@ -63,6 +65,10 @@ export function Participants(props: Props) {
             />
 
             <ParticipantsList data={selectedParticipants} onRemove={handleRemove}/>
+
+            <Button>Salvar</Button>
+
+            <a className="link" onClick={() => onBack()}>Voltar</a>
 
         </>
     );
