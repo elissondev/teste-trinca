@@ -21,11 +21,6 @@ export function ListITem() {
         removeParticipant(participantId);
     };
 
-    useEffect(() => {
-        console.log('event', event)
-    }, [event])
-
-
     return (
         <>
             {event.participants.map((participant) => (

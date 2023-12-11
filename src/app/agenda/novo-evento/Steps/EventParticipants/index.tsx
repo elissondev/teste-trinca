@@ -50,7 +50,8 @@ export default function EventParticipants({onBack}: Props) {
             id: v.value,
             name: v.label,
             priceWithDrink: 20,
-            priceWithoutDrink: 10
+            priceWithoutDrink: 10,
+            contributionAmount: 0
         }
 
         addParticipant(participant)

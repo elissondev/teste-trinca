@@ -6,8 +6,8 @@ import { createEventSlice, CreateEventSliceState } from '@/store/agenda/newEvent
 
 type StoreSliceState = UserSliceState & AgendaSliceState & CreateEventSliceState;
 
-export const useStore = create<StoreSliceState>((set) => ({
+export const useStore = create<StoreSliceState>((set, get) => ({
     ...createUserSlice(set),
-    ...createAgendaSlice(set),
+    ...createAgendaSlice(set, get),
     ...createEventSlice(set),
 }))

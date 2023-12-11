@@ -22,6 +22,7 @@ export default function EventInformationForm({onSubmit}: Props) {
         e.preventDefault()
 
         const payload: IEvent = {
+            id: Math.random().toString(36).substring(2),
             date,
             title,
             observation,

@@ -1,15 +1,24 @@
 "use client";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from "./Id.module.scss";
 import {IParticipant} from "@/types";
 import {Checkbox} from "@/components/Checkbox";
 
-export default function ListOfParticipants({id, name, isItPaid, contributionAmount}: IParticipant) {
-    const [payment, setPayment] = useState(isItPaid)
+interface Props {
+    participant: IParticipant
+}
+
+export default function ListOfParticipants({participant}: Props) {
+    const [payment, setPayment] = useState(participant.isItPaid)
 
     const handlePayment = (v: any) => {
         setPayment(v.target.checked)
     }
+
+    useEffect(() => {
+        console.log('participant', participant)
+    }, [participant])
+
 
     return (
         <div className={`grid ${styles.list}`}>
@@ -17,12 +26,12 @@ export default function ListOfParticipants({id, name, isItPaid, contributionAmou
                 <Checkbox
                     checked={payment as any}
                     onChange={v => handlePayment(v)}
-                    name={name}
-                    value={id}
+                    name={participant.name}
+                    value={participant.id}
                 />
             </div>
             <div className="col-4 col-md-4 col-lg-2">
-                <span className={`${styles.contributionAmount} ${isItPaid ? styles.paid : ''}`}>R${contributionAmount}</span
+                <span className={`${styles.contributionAmount} ${participant.isItPaid ? styles.paid : ''}`}>R${participant.contributionAmount}</span
                 >
             </div>
         </div>
