@@ -1,17 +1,14 @@
 import React from 'react';
 import styles from "./ParticipantsList.module.scss";
 import {ListITem} from "@/app/agenda/novo-evento/ParticipantsList/ListITem";
+import {useStore} from "@/store";
 
-type Props = {
-    data: { label: string, value: any }[]
-    onRemove: (v: any) => void
-};
-
-export default function ParticipantsList({ data, onRemove }: Props) {
+export default function ParticipantsList() {
+    const event = useStore((state) => state.event)
 
     return (
        <div className={styles.wrap}>
-           {data.length ? (
+           {event.participants?.length ? (
                <div className={`grid ${styles.headerList}`}>
                    <div className="col-12 col-md-8 col-lg-4">
                        Participante
@@ -29,9 +26,7 @@ export default function ParticipantsList({ data, onRemove }: Props) {
            ) : null}
 
            <ul>
-               {data.map(v => (
-                       <ListITem key={v.value} item={v} onRemove={onRemove}/>
-               ))}
+               <ListITem />
            </ul>
        </div>
     );

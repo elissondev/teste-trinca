@@ -17,11 +17,13 @@ export interface FormProps {
     submitText: string
 }
 
-export interface IParticipants {
+export interface IParticipant {
     id: any,
     name: string,
-    contributionAmount: number,
-    isItPaid: boolean
+    contributionAmount?: number,
+    priceWithDrink: number,
+    priceWithoutDrink: number,
+    isItPaid?: boolean
 }
 
 export interface IEvent {
@@ -30,7 +32,7 @@ export interface IEvent {
     title: string
     observation?: string
     numberOfUsers?: number
-    participants?: IParticipants[]
+    participants: IParticipant[]
     value?: number
 }
 

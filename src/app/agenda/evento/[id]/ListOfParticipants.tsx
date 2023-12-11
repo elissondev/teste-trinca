@@ -1,10 +1,10 @@
 "use client";
 import React, {useState} from 'react';
 import styles from "./Id.module.scss";
-import {IParticipants} from "@/types";
+import {IParticipant} from "@/types";
 import {Checkbox} from "@/components/Checkbox";
 
-export default function ListOfParticipants({id, name, isItPaid, contributionAmount}: IParticipants) {
+export default function ListOfParticipants({id, name, isItPaid, contributionAmount}: IParticipant) {
     const [payment, setPayment] = useState(isItPaid)
 
     const handlePayment = (v: any) => {

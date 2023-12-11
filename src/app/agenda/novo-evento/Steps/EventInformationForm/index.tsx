@@ -24,7 +24,8 @@ export default function EventInformationForm({onSubmit}: Props) {
         const payload: IEvent = {
             date,
             title,
-            observation
+            observation,
+            participants: event.participants
         }
 
         updateEvent({...event, ...payload})

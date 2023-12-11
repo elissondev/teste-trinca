@@ -2,7 +2,7 @@ import React from "react";
 import Card from "@/components/Card";
 import Header from "@/app/agenda/evento/[id]/Header";
 import ListOfParticipants from "@/app/agenda/evento/[id]/ListOfParticipants";
-import {IParticipants} from "@/types";
+import {IParticipant} from "@/types";
 interface Props {
     params: {
         id: string
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function Events({params}: Props) {
-    const participants: IParticipants[] = [
+    const participants: IParticipant[] = [
         {
             id: 1,
             name: 'Alice',

@@ -1,48 +1,78 @@
-import React, {useState} from 'react';
+import React,{useEffect} from 'react';
 import styles from "@/app/agenda/novo-evento/ParticipantsList/ParticipantsList.module.scss";
 import Input from "@/components/Input";
+import {useStore} from "@/store";
 
-type Props = {
-    item: { label: string, value: any }
-    onRemove: (v: any) => void
-};
+export function ListITem() {
+    const event = useStore((state) => state.event)
+    const updatePrice = useStore(state => state.updateParticipantPrice)
+    const removeParticipant = useStore(state => state.removeParticipant)
 
-export function ListITem({item, onRemove}: Props) {
-    const [priceWithDrink, setPriceWithDrink] = useState(20)
-    const [priceWithoutDrink, setPriceWithoutDrink] = useState(10)
+
+    const handleUpdatePriceWithDrink = (participantId: any, newPrice: number) => {
+        updatePrice(participantId, 'priceWithDrink', newPrice);
+    };
+
+    const handleUpdatePriceWithoutDrink = (participantId: any, newPrice: number) => {
+        updatePrice(participantId, 'priceWithoutDrink', newPrice);
+    };
+
+    // Remove um participante da lista
+    const handleRemoveParticipant = (participantId: number) => {
+        removeParticipant(participantId);
+    };
+
+    useEffect(() => {
+        console.log('event', event)
+    }, [event])
+
 
     return (
         <>
-            <li className={styles.listItem} key={item.value}>
-                <div className="grid">
-                    <div className="col-12 col-md-8 col-lg-4">
-                        <strong>{item.label}</strong>
+            {event.participants.map((participant) => (
+                <li className={styles.listItem} key={participant.id}>
+                    <div className="grid">
+                        <div className="col-12 col-md-8 col-lg-4">
+                            <strong>{participant.name}</strong>
+                        </div>
+                        <div className="col-12 col-md-8 col-lg-3">
+                            <Input
+                                className={styles.input}
+                                label="Com Bebida"
+                                placeholder="Valor com Bebida"
+                                type="text"
+                                value={participant.priceWithDrink}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                    handleUpdatePriceWithDrink(
+                                        participant.id,
+                                        Number(e.target.value)
+                                    )
+                                }
+                            />
+                        </div>
+                        <div className="col-12 col-md-8 col-lg-3">
+                            <Input
+                                className={styles.input}
+                                label="Sem Bebida"
+                                placeholder="Valor sem Bebida"
+                                type="text"
+                                value={participant.priceWithoutDrink}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                    handleUpdatePriceWithoutDrink(
+                                        participant.id,
+                                        Number(e.target.value)
+                                    )
+                                }
+                            />
+                        </div>
+                        <div style={{ textAlign: 'right' }} className="col-12 col-md-8 col-lg-2">
+                            <button className={styles.removeBtn} onClick={() => handleRemoveParticipant(participant.id)}>
+                                X
+                            </button>
+                        </div>
                     </div>
-                    <div className="col-12 col-md-8 col-lg-3">
-                        <Input
-                            className={styles.input}
-                            label="Com Bebida"
-                            placeholder="Valor com Bebida"
-                            type="text"
-                            value={priceWithDrink}
-                            onChange={e => setPriceWithDrink(e.target.value)}
-                        />
-                    </div>
-                    <div className="col-12 col-md-8 col-lg-3">
-                        <Input
-                            className={styles.input}
-                            label="Sem Bebida"
-                            placeholder="Valor com Bebida"
-                            type="text"
-                            value={priceWithoutDrink}
-                            onChange={e => setPriceWithoutDrink(e.target.value)}
-                        />
-                    </div>
-                    <div style={{textAlign: 'right'}} className="col-12 col-md-8 col-lg-2">
-                        <button className={styles.removeBtn} onClick={() => onRemove(item.value)}>X</button>
-                    </div>
-                </div>
-            </li>
+                </li>
+            ))}
         </>
     );
 }
