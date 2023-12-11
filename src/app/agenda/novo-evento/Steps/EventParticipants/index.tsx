@@ -3,15 +3,16 @@ import Select from 'react-select'
 import ParticipantsList from "@/app/agenda/novo-evento/ParticipantsList";
 import Button from "@/components/Button";
 import {useStore} from "@/store";
-import {IEvent, IParticipants} from "@/types";
+import {IParticipants} from "@/types";
 
 type Props = {
     onBack: () => void
 };
 
 export default function EventParticipants({onBack}: Props) {
-    const events = useStore((state) => state.events)
-    const addEvent = useStore(state => state.addEvent)
+    const event = useStore((state) => state.event)
+    const updateEvent = useStore(state => state.updateEvent)
+
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedParticipants, setSelectedParticipants] = useState<{label: string, value: any}[]>([])
 
@@ -30,16 +31,39 @@ export default function EventParticipants({onBack}: Props) {
         }
     ]
 
+    // Usado para atualizar o store do novo evento
+    const updateEventStore = () => {
+        const participants: IParticipants[] = selectedParticipants.map(p => ({
+            id: p.value,
+            name: p.label,
+            contributionAmount: 0,
+            isItPaid: false
+        }))
+
+        let eventData = {
+            ...event,
+            participants
+        }
+
+        updateEvent(eventData)
+    }
+
     // Usado para selecionar o participante e incluir na lista
     const handleSelectParticipant = (v: any) => {
+        console.log('seleciou')
 
+        // Usado para limpar o campo após a seleção.
         setSelectedOption(v)
+
         // Caso já tenha sido selecionado, não seleciona mais.
         if (selectedParticipants.find(f => f.value === v.value))
             return
-        const currentData: any[] = [...selectedParticipants]
-        setSelectedParticipants([...currentData, v])
 
+        // Atualiza a lista no state local.
+        const currentSelection: any[] = [...selectedParticipants]
+        setSelectedParticipants([...currentSelection, v])
+
+        // Usado para limpar o campo após a seleção.
         setTimeout(() => setSelectedOption(null), 300)
     }
 
@@ -49,25 +73,16 @@ export default function EventParticipants({onBack}: Props) {
         setSelectedParticipants(currentData.filter(f => f.value !== value))
     }
 
+    // Usado para manter a lista de participantes populada, caso o usuário volte na etapa anterior.
     useEffect(() => {
-        let currentEvent: IEvent = events.slice(-1)[0];
+     if (event.participants?.length)
+          setSelectedParticipants(event.participants.map(p => ({label: p.name, value: p.id})))
+    }, [])
 
-        const participants: IParticipants[] = selectedParticipants.map(p => ({
-            id: p.value,
-            name: p.label,
-            contributionAmount: 0,
-            isItPaid: false
-        }))
-
-        currentEvent = {
-            ...currentEvent,
-            participants
-        }
-
-        addEvent(currentEvent)
-
+    // Atualiza o evento no store com a lista de participantes atualizada.
+    useEffect(() => {
+        updateEventStore()
     }, [selectedParticipants])
-
 
     return (
         <>

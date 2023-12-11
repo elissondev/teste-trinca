@@ -10,12 +10,6 @@ interface Props {
     onSubmit: (v: any) => void
 }
 
-const initialState = {
-    date: '',
-    title: '',
-    observation: ''
-}
-
 export default function EventInformationForm({onSubmit}: Props) {
     const updateEvent = useStore(state => state.updateEvent)
 
@@ -33,7 +27,7 @@ export default function EventInformationForm({onSubmit}: Props) {
             observation
         }
 
-        updateEvent(payload)
+        updateEvent({...event, ...payload})
         onSubmit(payload)
 
     };
@@ -48,7 +42,6 @@ export default function EventInformationForm({onSubmit}: Props) {
                 setObservation(event.observation)
         }
     }, [event])
-
 
     return (
         <>
