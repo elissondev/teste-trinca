@@ -17,17 +17,20 @@ export interface FormProps {
     submitText: string
 }
 
-export interface IEvent {
-    id?: any
-    date: string
-    title: string
-    numberOfUsers: number
-    value: number
-}
-
 export interface IParticipants {
     id: any,
     name: string,
     contributionAmount: number,
     isItPaid: boolean
 }
+
+export interface IEvent {
+    id?: any
+    date: Date | string
+    title: string
+    observation?: string
+    numberOfUsers: number
+    participants: IParticipants[]
+    value: number
+}
+

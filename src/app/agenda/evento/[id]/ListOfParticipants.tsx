@@ -4,10 +4,6 @@ import styles from "./Id.module.scss";
 import {IParticipants} from "@/types";
 import {Checkbox} from "@/components/Checkbox";
 
-type Props = {
-
-};
-
 export default function ListOfParticipants({id, name, isItPaid, contributionAmount}: IParticipants) {
     const [payment, setPayment] = useState(isItPaid)
 

@@ -44,7 +44,7 @@ export default function Events({params}: Props) {
 
                 {participants.map(item => (
                     <ListOfParticipants
-                        id={item._id}
+                        id={item.id}
                         name={item.name}
                         contributionAmount={item.contributionAmount}
                         isItPaid={item.isItPaid}

@@ -1,22 +1,26 @@
 "use client";
 import React, {useState} from "react";
+
 import Card from "@/components/Card";
-import FormData from "@/app/agenda/novo-evento/Steps/FormData";
-import Participants from "@/app/agenda/novo-evento/Steps/Participants";
+import EventParticipants from "./Steps/EventParticipants";
+import {useStore} from "@/store";
+import EventInformationForm from "./Steps/EventInformationForm";
 
 export default function NewEvent() {
+    const addEvent = useStore(state => state.addEvent)
     const [step, setStep] = useState(1)
 
     const handleSteps = (v: any) => {
         console.log('v', v)
+        addEvent(v)
         setStep(step + 1)
     }
 
     const renderSteps = () => {
         switch(step) {
 
-            case 1:   return <FormData onSubmit={handleSteps}/>;
-            case 2:   return <Participants onBack={() => setStep(1)}/>;
+            case 1:   return <EventInformationForm onSubmit={handleSteps}/>;
+            case 2:   return <EventParticipants onBack={() => setStep(1)}/>;
 
             default:  return <h1>Erro 404</h1>
         }

@@ -33,7 +33,7 @@ export default function Login() {
                             type="email"
                             value={email}
                             required
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className="form-control">
@@ -43,7 +43,7 @@ export default function Login() {
                             type="password"
                             value={password}
                             required
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                         />
                     </div>
 
