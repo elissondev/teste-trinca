@@ -1,18 +1,13 @@
-import React, {FormEvent, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Input from "@/components/Input";
 import {Textarea} from "@/components/Textarea";
 import Button from "@/components/Button";
 import Link from "next/link";
 import {useStore} from "@/store";
+import {IEvent} from "@/types";
 
 interface Props {
     onSubmit: (v: any) => void
-}
-
-interface EventData {
-    date: Date | string
-    title: string
-    observation: string
 }
 
 const initialState = {
@@ -22,37 +17,37 @@ const initialState = {
 }
 
 export default function EventInformationForm({onSubmit}: Props) {
-    const events = useStore((state) => state.events)
+    const updateEvent = useStore(state => state.updateEvent)
+
+    const event = useStore((state) => state.event)
     const [date, setDate] = useState<Date | string>('')
     const [title, setTitle] = useState<string>('')
     const [observation, setObservation] = useState<string>('')
-    const [tempFormData, setTempFormData] = useState<EventData>(initialState)
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const payload: EventData = {
+        const payload: IEvent = {
             date,
             title,
             observation
         }
 
+        updateEvent(payload)
         onSubmit(payload)
 
     };
 
     // Usado para manter populado o formulário entre as transições das etapas.
     useEffect(() => {
-        const currentData = events.slice(-1)[0];
+        if (!event.id) {
+            setDate(event.date)
+            setTitle(event.title)
 
-        if (!currentData.id) {
-            setDate(currentData.date)
-            setTitle(currentData.title)
-
-            if (currentData.observation)
-                setObservation(currentData.observation)
+            if (event.observation)
+                setObservation(event.observation)
         }
-
-    }, [tempFormData])
+    }, [event])
 
 
     return (
@@ -65,7 +60,7 @@ export default function EventInformationForm({onSubmit}: Props) {
                         label="Data"
                         placeholder="Informe a data do evento"
                         type="date"
-                        value={tempFormData.date as any || date}
+                        value={date as any}
                         required
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDate(e.target.value)}
                     />
@@ -75,7 +70,7 @@ export default function EventInformationForm({onSubmit}: Props) {
                         label="Descrição"
                         placeholder="Digite a descrição do evento"
                         type="text"
-                        value={tempFormData.title || title}
+                        value={title}
                         required
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
                     />
@@ -84,7 +79,7 @@ export default function EventInformationForm({onSubmit}: Props) {
                 <div className="form-control">
                     <Textarea
                         label="Observações"
-                        value={tempFormData.title || observation}
+                        value={observation}
                         placeholder="Informe as observações do churras, caso tenha..."
                         onChange={v => setObservation(v.target.value)}
                     />

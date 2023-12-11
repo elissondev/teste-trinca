@@ -29,8 +29,8 @@ export interface IEvent {
     date: Date | string
     title: string
     observation?: string
-    numberOfUsers: number
-    participants: IParticipants[]
-    value: number
+    numberOfUsers?: number
+    participants?: IParticipants[]
+    value?: number
 }
 

@@ -7,12 +7,9 @@ import {useStore} from "@/store";
 import EventInformationForm from "./Steps/EventInformationForm";
 
 export default function NewEvent() {
-    const addEvent = useStore(state => state.addEvent)
     const [step, setStep] = useState(1)
 
-    const handleSteps = (v: any) => {
-        console.log('v', v)
-        addEvent(v)
+    const handleSteps = () => {
         setStep(step + 1)
     }
 

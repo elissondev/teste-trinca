@@ -20,6 +20,9 @@ export default function Events() {
                                 title={event.title}
                                 numberOfUsers={event.numberOfUsers}
                                 value={event.value}
+                                observation={event.observation}
+                                participants={event.participants}
+                                id={event.id}
                             />
                         </Link>
                     ))}

@@ -2,13 +2,16 @@ import React, {useEffect, useState} from 'react';
 import Select from 'react-select'
 import ParticipantsList from "@/app/agenda/novo-evento/ParticipantsList";
 import Button from "@/components/Button";
-import Link from "next/link";
+import {useStore} from "@/store";
+import {IEvent, IParticipants} from "@/types";
 
 type Props = {
     onBack: () => void
 };
 
 export default function EventParticipants({onBack}: Props) {
+    const events = useStore((state) => state.events)
+    const addEvent = useStore(state => state.addEvent)
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedParticipants, setSelectedParticipants] = useState<{label: string, value: any}[]>([])
 
@@ -47,7 +50,22 @@ export default function EventParticipants({onBack}: Props) {
     }
 
     useEffect(() => {
-        console.log('selectedParticipants', selectedParticipants)
+        let currentEvent: IEvent = events.slice(-1)[0];
+
+        const participants: IParticipants[] = selectedParticipants.map(p => ({
+            id: p.value,
+            name: p.label,
+            contributionAmount: 0,
+            isItPaid: false
+        }))
+
+        currentEvent = {
+            ...currentEvent,
+            participants
+        }
+
+        addEvent(currentEvent)
+
     }, [selectedParticipants])
 
 
