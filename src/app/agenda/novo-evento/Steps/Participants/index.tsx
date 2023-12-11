@@ -8,7 +8,7 @@ type Props = {
     onBack: () => void
 };
 
-export default function Index({onBack}: Props) {
+export default function Participants({onBack}: Props) {
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedParticipants, setSelectedParticipants] = useState<{label: string, value: any}[]>([])
 

@@ -2,6 +2,7 @@ import React, {FormEvent, useState} from 'react';
 import Input from "@/components/Input";
 import {Textarea} from "@/components/Textarea";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 interface Props {
     onSubmit: (v: any) => void
@@ -58,6 +59,8 @@ export default function Index({onSubmit}: Props) {
                 <Button type="submit">Próximo →</Button>
 
             </form>
+
+            <Link className="link" href="/agenda/eventos">Cancelar</Link>
         </>
     );
 }

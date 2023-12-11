@@ -1,40 +1,18 @@
+"use client"
 import React from "react";
-import {EventCard} from "@/components/Events/EventCard";
-import {IEvent} from "@/types";
+import { useStore } from "@/store"
+import { EventCard } from "@/components/Events/EventCard";
 import AddBarbecue from "@/components/Events/AddBarbecue";
 import Link from "next/link";
 
 export default function Events() {
-
-    const data: IEvent[] = [
-        {
-            id: 1,
-            date: '01/12',
-            title: 'Níver do Gui',
-            numberOfUsers: 15,
-            value: 280
-        },
-        {
-            id: 2,
-            date: '23/12',
-            title: 'Final de Ano',
-            numberOfUsers: 28,
-            value: 400
-        },
-        {
-            id: 3,
-            date: '06/01',
-            title: 'Sem motivo',
-            numberOfUsers: 12,
-            value: 140
-        },
-    ]
+    const events = useStore((state) => state.events)
 
     return (
         <>
             <div className="container">
                 <div className="grid">
-                    {data.map(event => (
+                    {events.map(event => (
                         <Link href={`/agenda/evento/${event.id}`} className="col-12 col-md-8 col-lg-6">
                             <EventCard
                                 key={event.id}
