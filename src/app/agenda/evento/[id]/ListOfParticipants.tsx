@@ -8,7 +8,7 @@ type Props = {
 
 };
 
-export default function ListOfParticipants({_id, name, isItPaid, contributionAmount}: IParticipants) {
+export default function ListOfParticipants({id, name, isItPaid, contributionAmount}: IParticipants) {
     const [payment, setPayment] = useState(isItPaid)
 
     const handlePayment = (v: any) => {
@@ -22,7 +22,7 @@ export default function ListOfParticipants({_id, name, isItPaid, contributionAmo
                     checked={payment}
                     onChange={v => handlePayment(v)}
                     name={name}
-                    value={_id}
+                    value={id}
                 />
             </div>
             <div className="col-4 col-md-4 col-lg-2">

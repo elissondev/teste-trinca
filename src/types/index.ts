@@ -18,7 +18,7 @@ export interface FormProps {
 }
 
 export interface IEvent {
-    _id?: any
+    id?: any
     date: string
     title: string
     numberOfUsers: number
@@ -26,7 +26,7 @@ export interface IEvent {
 }
 
 export interface IParticipants {
-    _id: any,
+    id: any,
     name: string,
     contributionAmount: number,
     isItPaid: boolean

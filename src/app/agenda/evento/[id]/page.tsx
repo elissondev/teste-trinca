@@ -12,25 +12,25 @@ interface Props {
 export default function Events({params}: Props) {
     const participants: IParticipants[] = [
         {
-            _id: 1,
+            id: 1,
             name: 'Alice',
             contributionAmount: 20,
             isItPaid: false
         },
         {
-            _id: 2,
+            id: 2,
             name: 'Beto',
             contributionAmount: 20,
             isItPaid: false
         },
         {
-            _id: 3,
+            id: 3,
             name: 'Diego B',
             contributionAmount: 20,
             isItPaid: true
         },
         {
-            _id: 4,
+            id: 4,
             name: 'Diego P',
             contributionAmount: 10,
             isItPaid: false
@@ -44,7 +44,7 @@ export default function Events({params}: Props) {
 
                 {participants.map(item => (
                     <ListOfParticipants
-                        _id={item._id}
+                        id={item._id}
                         name={item.name}
                         contributionAmount={item.contributionAmount}
                         isItPaid={item.isItPaid}
