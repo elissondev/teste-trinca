@@ -15,14 +15,9 @@ export default function ListOfParticipants({participant}: Props) {
         setPayment(v.target.checked)
     }
 
-    useEffect(() => {
-        console.log('participant', participant)
-    }, [participant])
-
-
     return (
         <div className={`grid ${styles.list}`}>
-            <div className="col-8 col-md-8 col-lg-10">
+            <div className="col-12 col-md-8 col-lg-4">
                 <Checkbox
                     checked={payment as any}
                     onChange={v => handlePayment(v)}
@@ -30,7 +25,13 @@ export default function ListOfParticipants({participant}: Props) {
                     value={participant.id}
                 />
             </div>
-            <div className="col-4 col-md-4 col-lg-2">
+            <div className="col-12 col-md-8 col-lg-3 text-center">
+                R${participant.priceWithDrink}
+            </div>
+            <div className="col-12 col-md-8 col-lg-3 text-center">
+                R${participant.priceWithoutDrink}
+            </div>
+            <div style={{ textAlign: 'right' }} className="col-12 col-md-8 col-lg-2">
                 <span className={`${styles.contributionAmount} ${participant.isItPaid ? styles.paid : ''}`}>R${participant.contributionAmount}</span
                 >
             </div>
