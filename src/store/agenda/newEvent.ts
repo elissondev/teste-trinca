@@ -7,18 +7,21 @@ export interface CreateEventSliceState {
     addParticipant: (participant: IParticipant) => void
     removeParticipant: (id: any) => void
     updateParticipantPrice: (id: any, propertyName: 'priceWithDrink' | 'priceWithoutDrink', newPrice: number) => void
+    clearEvent: () => void
+}
+
+const initialState = {
+    id: 0,
+    date: '',
+    title: '',
+    numberOfUsers: 0,
+    observation: '',
+    participants: [],
+    value: 0
 }
 
 export const createEventSlice = (set: SetState<CreateEventSliceState>): CreateEventSliceState => ({
-    event: {
-        id: 0,
-        date: '',
-        title: '',
-        numberOfUsers: 0,
-        observation: '',
-        participants: [],
-        value: 0
-    },
+    event: initialState,
     updateEvent: (newEvent: IEvent) =>
         set(() => ({
             event: newEvent
@@ -53,6 +56,11 @@ export const createEventSlice = (set: SetState<CreateEventSliceState>): CreateEv
                     ),
                 },
             };
+        });
+    },
+    clearEvent: () => {
+        set({
+            event: initialState,
         });
     },
 })

@@ -8,7 +8,6 @@ export function ListITem() {
     const updatePrice = useStore(state => state.updateParticipantPrice)
     const removeParticipant = useStore(state => state.removeParticipant)
 
-
     const handleUpdatePriceWithDrink = (participantId: any, newPrice: number) => {
         updatePrice(participantId, 'priceWithDrink', newPrice);
     };

@@ -1,17 +1,22 @@
 import React, {useState} from 'react';
+import toast from 'react-hot-toast';
 import Select from 'react-select'
 import ParticipantsList from "@/app/agenda/novo-evento/ParticipantsList";
 import Button from "@/components/Button";
 import {useStore} from "@/store";
 import {IParticipant} from "@/types";
+import {useRouter} from "next/navigation";
 
 type Props = {
     onBack: () => void
 };
 
 export default function EventParticipants({onBack}: Props) {
+    const router = useRouter()
     const event = useStore((state) => state.event)
+    const addEvent = useStore((state) => state.addEvent)
     const addParticipant = useStore(state => state.addParticipant)
+    const clearEvent = useStore(state => state.clearEvent)
 
     const [selectedOption, setSelectedOption] = useState<any>(null);
 
@@ -54,6 +59,13 @@ export default function EventParticipants({onBack}: Props) {
         setTimeout(() => setSelectedOption(null), 300)
     }
 
+    const handleSaveEvent = () => {
+        addEvent(event)
+        toast.success('Successfully created!');
+        router.push('/agenda/eventos')
+        clearEvent()
+    }
+
     return (
         <>
             <h2 className="text-center">Novo Churras - Participantes</h2>
@@ -69,7 +81,7 @@ export default function EventParticipants({onBack}: Props) {
 
             <ParticipantsList />
 
-            <Button>Salvar</Button>
+            <Button disabled={!event.participants.length} onClick={() => handleSaveEvent()}>Salvar</Button>
 
             <a className="link" onClick={() => onBack()}>Voltar</a>
 

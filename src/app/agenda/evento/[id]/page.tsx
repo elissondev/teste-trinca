@@ -15,25 +15,33 @@ export default function Events({params}: Props) {
             id: 1,
             name: 'Alice',
             contributionAmount: 20,
-            isItPaid: false
+            isItPaid: false,
+            priceWithDrink: 20,
+            priceWithoutDrink: 15,
         },
         {
             id: 2,
             name: 'Beto',
             contributionAmount: 20,
-            isItPaid: false
+            isItPaid: false,
+            priceWithDrink: 20,
+            priceWithoutDrink: 15,
         },
         {
             id: 3,
             name: 'Diego B',
             contributionAmount: 20,
-            isItPaid: true
+            isItPaid: true,
+            priceWithDrink: 20,
+            priceWithoutDrink: 15,
         },
         {
             id: 4,
             name: 'Diego P',
             contributionAmount: 10,
-            isItPaid: false
+            isItPaid: false,
+            priceWithDrink: 20,
+            priceWithoutDrink: 15,
         }
     ]
 
@@ -48,6 +56,8 @@ export default function Events({params}: Props) {
                         name={item.name}
                         contributionAmount={item.contributionAmount}
                         isItPaid={item.isItPaid}
+                        priceWithoutDrink={item.priceWithoutDrink}
+                        priceWithDrink={item.priceWithDrink}
                     />
                 ))}
 

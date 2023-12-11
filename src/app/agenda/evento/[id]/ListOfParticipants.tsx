@@ -15,7 +15,7 @@ export default function ListOfParticipants({id, name, isItPaid, contributionAmou
         <div className={`grid ${styles.list}`}>
             <div className="col-8 col-md-8 col-lg-10">
                 <Checkbox
-                    checked={payment}
+                    checked={payment as any}
                     onChange={v => handlePayment(v)}
                     name={name}
                     value={id}
