@@ -132,14 +132,12 @@ export const createAgendaSlice = (
                 event.id === eventId
                     ? {
                         ...event,
-                        name: details.title !== undefined ? details.title : event.title,
+                        title: details.title !== undefined ? details.title : event.title,
                         date: details.date !== undefined ? details.date : event.date,
                         observation: details.observation !== undefined ? details.observation : event.observation,
                     }
                     : event
             );
-
-            console.log('updatedEvents', updatedEvents)
 
             return {
                 events: updatedEvents,

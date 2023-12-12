@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from "@/app/agenda/evento/[id]/Id.module.scss";
 import EventMetrics from "@/components/Events/EventMetrics";
 import {formattedDate} from "@/utils";
@@ -12,6 +12,10 @@ interface Props {
 export default function Header({event}: Props) {
     const store = useStore();
     const [editTitle, setEditTitle] = useState<boolean>(false);
+    const [editObservation, setEditObservation] = useState<boolean>(false);
+    const titleRef = useRef<any>(null);
+    const observationRef = useRef<any>(null);
+
 
     const calculateTotalContribution = () => {
         return event.participants.reduce(
@@ -24,10 +28,6 @@ export default function Header({event}: Props) {
         const updatedDetails = {
             [key]: value
         };
-
-        console.log('updatedDetails', updatedDetails)
-        console.log('event.id', event.id)
-
         store.updateEventDetails(event.id, updatedDetails);
     }
 
@@ -37,6 +37,17 @@ export default function Header({event}: Props) {
         }
     };
 
+    useEffect(() => {
+        console.log('store.', event)
+    }, [event])
+
+    useEffect(() => {
+        if (editTitle) titleRef.current?.focus();
+        if (editObservation) observationRef.current?.focus();
+
+    }, [editTitle, editObservation]);
+
+
     return (
         <div className={`grid ${styles.headerWrap}`}>
             <div className="col-8 col-md-8 col-lg-9">
@@ -45,8 +56,9 @@ export default function Header({event}: Props) {
                 {editTitle ? (
                     <div className={styles.inputContainer}>
                         <input
-                            className={styles.input}
+                            className={styles.inputTitle}
                             placeholder="Valor"
+                            ref={titleRef}
                             type="text"
                             value={event.title || ''}
                             onBlur={() => setEditTitle(false)}
@@ -57,7 +69,10 @@ export default function Header({event}: Props) {
                         />
                     </div>
                 ) : (
-                    <h2 onClick={() => setEditTitle(true)} className={styles.title}>{event.title}</h2>
+                    <h2 onClick={() => {
+                        setEditTitle(true)
+
+                    }} className={styles.title}>{event.title}</h2>
                 )}
             </div>
             <div className="col-4 col-md-4 col-lg-3 text-right">
@@ -79,7 +94,26 @@ export default function Header({event}: Props) {
                 </div>
             </div>
             <div className="col-12">
-                {event.observation}
+
+                {editObservation ? (
+                    <div className={styles.inputContainer}>
+                        <input
+                            className={styles.inputObservation}
+                            placeholder="Digite a observação..."
+                            ref={observationRef}
+                            type="text"
+                            value={event.observation || ''}
+                            onBlur={() => setEditObservation(false)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                updateEventDetails(e.target.value, 'observation')
+                            }
+                            onKeyPress={handleKeyPress}
+                        />
+                    </div>
+                ) : (
+                    <p onClick={() => setEditObservation(true)}>{event.observation}</p>
+                )}
+
             </div>
         </div>
     );

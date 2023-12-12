@@ -67,3 +67,24 @@
   opacity: 0;
   margin-top: 6px;
 }
+
+.inputTitle {
+  @extend .input;
+  font-size: 36px;
+  font-weight: 700;
+  opacity: 0.8;
+  text-align: left;
+  height: 35px;
+  margin-left: -8px;
+  margin-bottom: 1px;
+  font-family: inherit;
+}
+
+.inputObservation {
+  font-family: inherit;
+  font-size: 16px;
+  margin-left: -4px;
+  margin-top: -5px;
+  margin-bottom: -4px;
+  width: 100%;
+}
