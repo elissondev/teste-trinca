@@ -67,76 +67,77 @@ export default function Header({event}: Props) {
 
 
     return (
-        <div className={`grid ${styles.headerWrap}`}>
-            <div className="col-8 col-md-8 col-lg-9">
-                {editDate ? (
-                    <div style={{display: 'inline-block'}} className={styles.inputContainer}>
-                        <input
-                            className={styles.inputDate}
-                            ref={dateRef}
-                            type="date"
-                            value={event.date || '' as any}
-                            onBlur={() => setEditDate(false)}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                updateEventDetails(e.target.value, 'date')
-                            }
-                            onKeyPress={handleKeyPress}
+        <>
+            <div className={`grid ${styles.headerWrap}`}>
+                <div className="col-8 col-md-8 col-lg-9">
+                    {editDate ? (
+                        <div style={{display: 'inline-block'}} className={styles.inputContainer}>
+                            <input
+                                className={styles.inputDate}
+                                ref={dateRef}
+                                type="date"
+                                value={event.date || '' as any}
+                                onBlur={() => setEditDate(false)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                    updateEventDetails(e.target.value, 'date')
+                                }
+                                onKeyPress={handleKeyPress}
+                            />
+                        </div>
+                    ) : (
+                        <div
+                            title="Clique para editar a data."
+                            onClick={() => setEditDate(true)}
+                            className={styles.date}>{
+                            formattedDate(String(event.date))
+                        }</div>
+                    )}
+
+                    {editTitle ? (
+                        <div className={styles.inputContainer}>
+                            <input
+                                className={styles.inputTitle}
+                                placeholder="Valor"
+                                ref={titleRef}
+                                type="text"
+                                value={event.title || ''}
+                                onBlur={() => setEditTitle(false)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                    updateEventDetails(e.target.value, 'title')
+                                }
+                                onKeyPress={handleKeyPress}
+                            />
+                        </div>
+                    ) : (
+                        <h2
+                            title="Clique para editar o título."
+                            onClick={() => setEditTitle(true)}
+                            className={styles.title}
+                        >
+                            {event.title}
+                        </h2>
+                    )}
+                </div>
+                <div className="col-4 col-md-4 col-lg-3 text-right">
+                    <div className={styles.metrics}>
+                        <EventMetrics
+                            value={event.participants.length}
+                            icon="icon_people.png"
+                            iconWSize={18}
+                            iconHSize={15.3}
                         />
                     </div>
-                ) : (
-                    <div
-                        title="Clique para editar a data."
-                        onClick={() => setEditDate(true)}
-                        className={styles.date}>{
-                        formattedDate(String(event.date))
-                    }</div>
-                )}
-
-                {editTitle ? (
-                    <div className={styles.inputContainer}>
-                        <input
-                            className={styles.inputTitle}
-                            placeholder="Valor"
-                            ref={titleRef}
-                            type="text"
-                            value={event.title || ''}
-                            onBlur={() => setEditTitle(false)}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                updateEventDetails(e.target.value, 'title')
-                            }
-                            onKeyPress={handleKeyPress}
+                    <div>
+                        <EventMetrics
+                            value={`R$${calculateTotalContribution()}`}
+                            icon="icon_money.png"
+                            iconWSize={20}
+                            iconHSize={20}
                         />
                     </div>
-                ) : (
-                    <h2
-                        title="Clique para editar o título."
-                        onClick={() => setEditTitle(true)}
-                        className={styles.title}
-                    >
-                        {event.title}
-                    </h2>
-                )}
-            </div>
-            <div className="col-4 col-md-4 col-lg-3 text-right">
-                <div className={styles.metrics}>
-                    <EventMetrics
-                        value={event.participants.length}
-                        icon="icon_people.png"
-                        iconWSize={18}
-                        iconHSize={15.3}
-                    />
-                </div>
-                <div>
-                    <EventMetrics
-                        value={`R$${calculateTotalContribution()}`}
-                        icon="icon_money.png"
-                        iconWSize={20}
-                        iconHSize={20}
-                    />
                 </div>
             </div>
-            <div className="col-12">
-
+            <div>
                 {editObservation ? (
                     <div className={styles.inputContainer}>
                         <input
@@ -161,6 +162,6 @@ export default function Header({event}: Props) {
                 )}
 
             </div>
-        </div>
+        </>
     );
 }
