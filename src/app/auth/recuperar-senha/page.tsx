@@ -24,7 +24,7 @@ export default function RecoverPassword() {
                     type="email"
                     value={email}
                     required
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                 />
             </div>
 

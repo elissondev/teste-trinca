@@ -24,7 +24,7 @@ export default function Events({params: { id }}: Props) {
 
                 <ParticipantsListHeader nameSpace="eventDetails" />
                 {event.participants?.length && event.participants?.map((participant: IParticipant) => (
-                    <ListOfParticipants key={participant.id} participant={participant}
+                    <ListOfParticipants key={participant.id} id={id} participant={participant}
                     />
                 ))}
 
