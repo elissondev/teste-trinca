@@ -19,6 +19,7 @@ export interface AgendaSliceState {
     getEventById: (id: any) => any;
     updateContributionAmount: TypeUpdateContributionAmount;
     removeParticipantFromEvent: (eventId: any, participantId: any) => void
+    addNewParticipantToEvent: (eventId: any, participant: IParticipant) => void
     updateEventDetails: TyUpdateEventDetails
     deleteEvent: (eventId: any) => void;
 }
@@ -126,6 +127,31 @@ export const createAgendaSlice = (
             };
 
         }),
+    addNewParticipantToEvent: (eventId, participant) => {
+        set((state) => {
+
+            // Encontrar o evento pelo ID
+            const eventToUpdate = state.events.find((event) => event.id === eventId);
+
+            if (!eventToUpdate) {
+                return state;
+            }
+
+            // Adicionar o novo participante à lista de participantes do evento
+            const updatedParticipants = [...eventToUpdate.participants, participant];
+
+            // Atualizar o evento com a nova lista de participantes
+            const updatedEvent = {...eventToUpdate, participants: updatedParticipants};
+
+            // Criar uma cópia do estado atualizado com o evento modificado
+            const updatedEvents = state.events.map((event) =>
+                event.id === eventId ? updatedEvent : event
+            );
+
+            // Retornar o novo estado
+            return {events: updatedEvents};
+        })
+    },
     updateEventDetails: (eventId, details) => {
         set((state) => {
             const updatedEvents = state.events.map((event) =>

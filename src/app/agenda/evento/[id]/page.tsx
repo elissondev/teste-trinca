@@ -12,6 +12,7 @@ import Link from "next/link";
 import {useRouter} from "next/navigation";
 import Button from "@/components/Button";
 import toast from "react-hot-toast";
+import AddParticipant from "@/app/agenda/evento/[id]/AddParticipant";
 
 interface Props {
     params: {
@@ -39,6 +40,8 @@ export default function Events({params: {id}}: Props) {
         <div className="container">
             <Card padding="24px 24px 40px 30px">
                 <Header event={event}/>
+
+                <AddParticipant event={event} />
 
                 {!event.participants.length ? (
                     <h3>Nenhum participante no evento.</h3>
