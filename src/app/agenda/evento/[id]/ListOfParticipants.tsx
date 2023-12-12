@@ -1,5 +1,5 @@
 "use client";
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from "./Id.module.scss";
 import {Checkbox} from "@/components/Checkbox";
 import {useStore} from "@/store";
@@ -13,6 +13,7 @@ interface Props {
 export default function ListOfParticipants({eventId, participant}: Props) {
     const store = useStore();
     const [editValue, setEditValue] = useState<boolean>(false);
+    const valueRef = useRef<any>(null);
 
     const handlePayment = () => {
         store.updateContributionAmount(eventId, participant.id, 0, "contributionAmount" );
@@ -31,6 +32,11 @@ export default function ListOfParticipants({eventId, participant}: Props) {
             event.target.blur(); // Remove o foco do input
         }
     };
+
+    // Usado para dar focus nos inputs imediatamente ao clique
+    useEffect(() => {
+        if (editValue) valueRef.current?.focus();
+    }, [editValue]);
 
     return (
         <div key={participant.id} className={`grid ${styles.list}`}>
@@ -52,6 +58,10 @@ export default function ListOfParticipants({eventId, participant}: Props) {
                 {editValue ? (
                     <div className={styles.inputContainer}>
                         <input
+                            min={0}
+                            max={1000}
+                            maxLength={4}
+                            ref={valueRef}
                             className={styles.input}
                             placeholder="Valor"
                             type="number"
@@ -65,6 +75,7 @@ export default function ListOfParticipants({eventId, participant}: Props) {
                     </div>
                 ) : (
                     <span
+                        title="Clique para informar o valor da contribuição."
                         onClick={() => setEditValue(true)}
                         className={`${styles.contributionAmount} ${participant.isItPaid ? styles.paid : ''}`}
                     >
@@ -74,7 +85,11 @@ export default function ListOfParticipants({eventId, participant}: Props) {
 
             </div>
             <div className="col-12 col-md-8 col-lg-1 text-right">
-                <button title={`Remover ${participant.name}`} className={styles.removeBtn} onClick={() => handleRemoveParticipant(participant.id)}>
+                <button
+                    title={`Remover ${participant.name}`}
+                    className={styles.removeBtn}
+                    onClick={() => handleRemoveParticipant(participant.id)}
+                >
                     X
                 </button>
             </div>
