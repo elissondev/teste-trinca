@@ -1,4 +1,4 @@
-import styles from '@/styles/page.module.scss'
+import styles from '@/styles/pages/page.module.scss'
 
 export default function Register() {
   return (

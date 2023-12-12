@@ -3,7 +3,7 @@ import {IChildren} from "@/types";
 import Image from "next/image";
 import {Toaster} from "react-hot-toast";
 
-export default function AgendaLayout({ children }: IChildren) {
+const AgendaLayout = ({ children }: IChildren) => {
     return (
         <>
             <div className={`header-page panel`}>
@@ -25,3 +25,5 @@ export default function AgendaLayout({ children }: IChildren) {
         </>
     );
 }
+
+export default AgendaLayout;

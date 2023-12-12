@@ -2,9 +2,17 @@ import React from 'react';
 import styles from './Button.module.scss';
 import {IChildren} from "@/types";
 
-export default function Button({ children, loading, ...rest }: IChildren) {
+interface Props extends IChildren {
+    loading?: boolean
+    style?: any
+    onClick?: (e?: any) => any
+    type?: any
+    disabled?: boolean
+}
+
+export default function Button({ children, loading, style, ...rest }: Props) {
     return (
-        <button disabled={loading} className={styles.button} {...rest}>
+        <button style={style} disabled={loading} className={styles.button} {...rest}>
             {loading ? ('...') : children}
         </button>
     )

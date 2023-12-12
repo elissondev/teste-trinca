@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
 
 export interface IChildren {
-    children: ReactNode;
-    [key: string]: any;
+    children: any
 }
 
 export interface IUser {
