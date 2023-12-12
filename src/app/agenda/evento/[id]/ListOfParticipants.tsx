@@ -15,11 +15,11 @@ export default function ListOfParticipants({eventId, participant}: Props) {
     const [editValue, setEditValue] = useState<boolean>(false);
 
     const handlePayment = () => {
-        store.updateIsItPaid(participant.id, !participant.isItPaid);
+        store.updateContributionAmount(eventId, participant.id, 0, "contributionAmount" );
     };
 
     const handleUpdateValue = (value: number) => {
-        store.updateContributionAmount(eventId, participant.id, value);
+        store.updateContributionAmount(eventId, participant.id, value, "contributionAmount");
     };
 
 

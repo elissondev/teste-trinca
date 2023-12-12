@@ -19,11 +19,11 @@ export default function Header({event}: Props) {
 
     return (
         <div className={`grid ${styles.headerWrap}`}>
-            <div className="col-8 col-md-8 col-lg-10">
+            <div className="col-8 col-md-8 col-lg-9">
                 <div className={styles.date}>{formattedDate(new Date(event.date))}</div>
                 <h2 className={styles.title}>{event.title}</h2>
             </div>
-            <div className="col-4 col-md-4 col-lg-2">
+            <div className="col-4 col-md-4 col-lg-3 text-right">
                 <div className={styles.metrics}>
                     <EventMetrics
                         value={event.participants.length}
