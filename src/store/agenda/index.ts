@@ -1,11 +1,13 @@
 import {SetState} from "zustand";
 import {IEvent, IParticipant} from "@/types";
 
+type TypeNameSpace = 'isItPaid' | 'contributionAmount' | 'priceWithoutDrink' | 'priceWithDrink'
+
 type TypeUpdateContributionAmount = (
     eventId: any,
     participantId: any,
     newAmount: number,
-    nameSpace: 'isItPaid' | 'contributionAmount'
+    nameSpace: TypeNameSpace
 ) => void;
 
 type TyUpdateEventDetails = (
@@ -27,22 +29,28 @@ export interface AgendaSliceState {
 const createUpdatedParticipant = (
     participant: IParticipant,
     newAmount: number,
-    nameSpace: 'isItPaid' | 'contributionAmount'
+    nameSpace: TypeNameSpace
 ): IParticipant => {
-    if (nameSpace === 'isItPaid') {
-        return {
-            ...participant,
-            isItPaid: !participant.isItPaid,
-        };
+
+    switch (nameSpace) {
+        case "isItPaid":
+            return {
+                ...participant,
+                isItPaid: !participant.isItPaid,
+            };
+        case "contributionAmount":
+            return {
+                ...participant,
+                contributionAmount: newAmount,
+                isItPaid: newAmount > 0 || false,
+            };
+        default :
+            return {
+                ...participant,
+                [nameSpace]: newAmount
+            };
     }
 
-    if (nameSpace === 'contributionAmount') {
-        return {
-            ...participant,
-            contributionAmount: newAmount,
-            isItPaid: newAmount > 0 || false,
-        };
-    }
 
     return participant;
 };

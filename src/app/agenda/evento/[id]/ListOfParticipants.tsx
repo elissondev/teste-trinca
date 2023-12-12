@@ -4,6 +4,7 @@ import styles from "./Id.module.scss";
 import {Checkbox} from "@/components/Checkbox";
 import {useStore} from "@/store";
 import {IParticipant} from "@/types";
+import {InputEditable} from "@/app/agenda/evento/[id]/InputEditable";
 
 interface Props {
     eventId: any
@@ -16,7 +17,7 @@ export default function ListOfParticipants({eventId, participant}: Props) {
     const valueRef = useRef<any>(null);
 
     const handlePayment = () => {
-        store.updateContributionAmount(eventId, participant.id, 0, "contributionAmount" );
+        store.updateContributionAmount(eventId, participant.id, 0, "contributionAmount");
     };
 
     const handleUpdateValue = (value: number) => {
@@ -49,40 +50,13 @@ export default function ListOfParticipants({eventId, participant}: Props) {
                 />
             </div>
             <div className="col-12 col-md-8 col-lg-3 text-center">
-                R${participant.priceWithDrink}
+                <InputEditable eventId={eventId} participant={participant} nameSpace="priceWithDrink"/>
             </div>
             <div className="col-12 col-md-8 col-lg-3 text-center">
-                R${participant.priceWithoutDrink}
+                <InputEditable eventId={eventId} participant={participant} nameSpace="priceWithoutDrink"/>
             </div>
             <div className="col-12 col-md-8 col-lg-2">
-                {editValue ? (
-                    <div className={styles.inputContainer}>
-                        <input
-                            min={0}
-                            max={1000}
-                            maxLength={4}
-                            ref={valueRef}
-                            className={styles.input}
-                            placeholder="Valor"
-                            type="number"
-                            value={participant.contributionAmount || ''}
-                            onBlur={() => setEditValue(false)}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                handleUpdateValue(Number(e.target.value))
-                            }
-                            onKeyPress={handleKeyPress}
-                        />
-                    </div>
-                ) : (
-                    <span
-                        title="Clique para informar o valor da contribuição."
-                        onClick={() => setEditValue(true)}
-                        className={`${styles.contributionAmount} ${participant.isItPaid ? styles.paid : ''}`}
-                    >
-            R${participant.contributionAmount}
-          </span>
-                )}
-
+                <InputEditable eventId={eventId} participant={participant} nameSpace="contributionAmount"/>
             </div>
             <div className="col-12 col-md-8 col-lg-1 text-right">
                 <button
