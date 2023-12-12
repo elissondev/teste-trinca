@@ -7,7 +7,6 @@ export interface CreateEventSliceState {
     addParticipant: (participant: IParticipant) => void
     removeParticipant: (id: any) => void
     updateParticipantPrice: (id: any, propertyName: 'priceWithDrink' | 'priceWithoutDrink', newPrice: number) => void
-    updateContributionAmount: (id: any, newPrice: number) => void
     clearEvent: () => void
 }
 
@@ -63,19 +62,5 @@ export const createEventSlice = (set: SetState<CreateEventSliceState>): CreateEv
         set({
             event: initialState,
         });
-    },
-    updateContributionAmount: (participantId: any, newAmount: number) => {
-        set((state) => {
-            return {
-                event: {
-                    ...state.event,
-                    participants: state.event.participants.map((participant) =>
-                        participant.id === participantId
-                            ? { ...participant, contributionAmount: newAmount }
-                            : participant
-                    ),
-                },
-            };
-        });
-    },
+    }
 })

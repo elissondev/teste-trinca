@@ -3,41 +3,32 @@ import React, {useEffect, useState} from 'react';
 import styles from "./Id.module.scss";
 import {IEvent, IParticipant} from "@/types";
 import {Checkbox} from "@/components/Checkbox";
-import Input from "@/components/Input";
 import {useStore} from "@/store";
 
 interface Props {
-    id: any
+    eventId: any
     participant: IParticipant
 }
 
-export default function ListOfParticipants({id, participant}: Props) {
-    const updateContributionAmount: (id: any, newAmount: number) => any = useStore((state) => state.updateContributionAmount)
-    const event: IEvent = useStore((state) => state.getEventById(id))
+export default function ListOfParticipants({eventId, participant}: Props) {
+    const store = useStore();
+    const [editValue, setEditValue] = useState<boolean>(false);
 
-    const [payment, setPayment] = useState(participant.isItPaid)
-    const [editValue, setEditValue] = useState(false)
-    const handlePayment = (v: any) => {
-        setPayment(v.target.checked)
-    }
+    const handlePayment = () => {
+        store.updateIsItPaid(participant.id, !participant.isItPaid);
+    };
 
-    const handleUpdateValue = (id: number, value: number) => {
-        console.log('id', id)
-        console.log('value', value)
-        updateContributionAmount(id, value)
-    }
-
-    useEffect(() => {
-        console.log('event', event)
-    }, [event.participants])
+    const handleUpdateValue = (value: number) => {
+        store.updateContributionAmount(eventId, participant.id, value);
+    };
 
 
     return (
-        <div className={`grid ${styles.list}`}>
+        <div key={participant.id} className={`grid ${styles.list}`}>
             <div className="col-12 col-md-8 col-lg-4">
                 <Checkbox
-                    checked={payment as any}
-                    onChange={v => handlePayment(v)}
+                    checked={participant.isItPaid || false}
+                    onChange={handlePayment}
                     name={participant.name}
                     value={participant.id}
                 />
@@ -50,29 +41,26 @@ export default function ListOfParticipants({id, participant}: Props) {
             </div>
             <div style={{ textAlign: 'right' }} className="col-12 col-md-8 col-lg-2">
                 {editValue ? (
-                        <div className={styles.inputContainer}>
-                            <input
-                                className={styles.input}
-                                placeholder="Valor"
-                                type="number"
-                                value={participant.contributionAmount}
-                                onBlur={() => setEditValue(!editValue)}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                    handleUpdateValue(
-                                        participant.id,
-                                        Number(e.target.value)
-                                    )
-                                }
-                            />
-                        </div>
+                    <div className={styles.inputContainer}>
+                        <input
+                            className={styles.input}
+                            placeholder="Valor"
+                            type="number"
+                            value={participant.contributionAmount || ''}
+                            onBlur={() => setEditValue(false)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                handleUpdateValue(Number(e.target.value))
+                            }
+                        />
+                    </div>
                 ) : (
                     <span
-                    onClick={() => setEditValue(!editValue)}
-                className={`${styles.contributionAmount} ${participant.isItPaid ? styles.paid : ''}`}>
-                R${participant.contributionAmount}
-            </span>
-                    )}
-
+                        onClick={() => setEditValue(true)}
+                        className={`${styles.contributionAmount} ${participant.isItPaid ? styles.paid : ''}`}
+                    >
+            R${participant.contributionAmount}
+          </span>
+                )}
             </div>
         </div>
     );
