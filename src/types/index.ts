@@ -36,3 +36,8 @@ export interface IEvent {
     value?: number
 }
 
+export interface ISelect {
+    label: string,
+    value: string
+}
+

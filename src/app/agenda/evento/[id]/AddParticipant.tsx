@@ -1,17 +1,19 @@
 import React, {useState} from 'react';
 import Select from "react-select";
-import {IEvent, IParticipant} from "@/types";
+import {IEvent, IParticipant, ISelect} from "@/types";
 import styles from "./Id.module.scss";
 import {useStore} from "@/store";
-import Login from "@/app/auth/login/page";
 
 type Props = {
-    event: IEvent
+    event?: IEvent
 };
 
 export default function AddParticipant({event}: Props) {
     const store = useStore();
     const [selectedOption, setSelectedOption] = useState<any[]>([]);
+
+    // Quando criado novo evento, então é store.event
+    // Quando é detalhes do evento, então vem do argumento event
 
     const data = [
         {
@@ -28,14 +30,25 @@ export default function AddParticipant({event}: Props) {
         }
     ]
 
+    const handleStopSelection = (eventData: IEvent) => {
+        return eventData.participants?.find(f => f.id === eventData.value)
+    }
+
     const handleSelectParticipant = (v: any) => {
 
         // Usado para limpar o campo após a seleção.
         setSelectedOption(v)
 
         // Caso já tenha sido selecionado, não seleciona mais.
-        if (event.participants?.find(f => f.id === v.value))
-            return
+        // Ficou obsoleto, pois está sendo usado tratativa para bloquear seleção via componente react-select
+        // Mantido como uma segurança redundante.
+        if (!event)
+            if (handleStopSelection(store.event))
+                return
+
+        if (event)
+            if (handleStopSelection(event))
+                return
 
         // Adiciona participante na lista do store.
         const participant: IParticipant = {
@@ -46,14 +59,28 @@ export default function AddParticipant({event}: Props) {
             contributionAmount: 0
         }
 
-        store.addNewParticipantToEvent(event.id, participant)
+        if (!event)
+            store.addParticipant(participant)
+
+        if (event)
+            store.addNewParticipantToEvent(event.id, participant)
+
         // Usado para limpar o campo após a seleção.
         setTimeout(() => setSelectedOption([]), 300)
     }
 
+    const checksIfAParticipantIsAlreadySelected = (store: IEvent, item: ISelect) => {
+       return store.participants.length &&
+           store.participants
+               .some((option) => option.id === item.value);
+    }
+
     // Verifica se um participante já está selecionado
-    const isItemDisabled = (item: {label: string, value: string}) => {
-        return event.participants.length && event.participants.some(option => option.id === item.value);
+    const isItemDisabled = (item: ISelect) => {
+        if (!event)
+            return checksIfAParticipantIsAlreadySelected(store.event, item)
+        if (event)
+            return checksIfAParticipantIsAlreadySelected(event, item)
     };
 
     // Faz o mapeamento os dados e adiciona a propriedade isDisabled conforme necessário

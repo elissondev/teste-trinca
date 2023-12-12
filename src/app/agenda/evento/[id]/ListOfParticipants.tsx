@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
 import styles from "./Id.module.scss";
 import {Checkbox} from "@/components/Checkbox";
 import {useStore} from "@/store";
@@ -13,31 +13,14 @@ interface Props {
 
 export default function ListOfParticipants({eventId, participant}: Props) {
     const store = useStore();
-    const [editValue, setEditValue] = useState<boolean>(false);
-    const valueRef = useRef<any>(null);
 
     const handlePayment = () => {
         store.updateContributionAmount(eventId, participant.id, 0, "contributionAmount");
     };
 
-    const handleUpdateValue = (value: number) => {
-        store.updateContributionAmount(eventId, participant.id, value, "contributionAmount");
-    };
-
     const handleRemoveParticipant = (participantId: number) => {
         store.removeParticipantFromEvent(eventId, participantId)
     };
-
-    const handleKeyPress = (event: any) => {
-        if (event.key === 'Enter') {
-            event.target.blur(); // Remove o foco do input
-        }
-    };
-
-    // Usado para dar focus nos inputs imediatamente ao clique
-    useEffect(() => {
-        if (editValue) valueRef.current?.focus();
-    }, [editValue]);
 
     return (
         <div key={participant.id} className={`grid ${styles.list}`}>
