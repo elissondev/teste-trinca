@@ -62,7 +62,7 @@ export default function EventParticipants({onBack}: Props) {
 
     const handleSaveEvent = () => {
         addEvent(event)
-        toast.success('Successfully created!');
+        toast.success('Evento criado com sucesso!');
         router.push('/agenda/eventos')
         clearEvent()
     }

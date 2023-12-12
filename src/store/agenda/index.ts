@@ -20,7 +20,7 @@ export interface AgendaSliceState {
     updateContributionAmount: TypeUpdateContributionAmount;
     removeParticipantFromEvent: (eventId: any, participantId: any) => void
     updateEventDetails: TyUpdateEventDetails
-
+    deleteEvent: (eventId: any) => void;
 }
 
 const createUpdatedParticipant = (
@@ -143,5 +143,10 @@ export const createAgendaSlice = (
                 events: updatedEvents,
             };
         });
+    },
+    deleteEvent: (eventId: any) => {
+        set((state) => ({
+            events: state.events.filter((event) => event.id !== eventId),
+        }));
     },
 });
