@@ -8,12 +8,19 @@ type TypeUpdateContributionAmount = (
     nameSpace: 'isItPaid' | 'contributionAmount'
 ) => void;
 
+type TyUpdateEventDetails = (
+    eventId: any,
+    details: { title?: string; date?: string; observation?: string }
+) => void
+
 export interface AgendaSliceState {
     events: IEvent[];
     addEvent: (events: IEvent) => void;
     getEventById: (id: any) => any;
     updateContributionAmount: TypeUpdateContributionAmount;
     removeParticipantFromEvent: (eventId: any, participantId: any) => void
+    updateEventDetails: TyUpdateEventDetails
+
 }
 
 const createUpdatedParticipant = (
@@ -118,5 +125,25 @@ export const createAgendaSlice = (
                 events: updatedEvents,
             };
 
-        })
+        }),
+    updateEventDetails: (eventId, details) => {
+        set((state) => {
+            const updatedEvents = state.events.map((event) =>
+                event.id === eventId
+                    ? {
+                        ...event,
+                        name: details.title !== undefined ? details.title : event.title,
+                        date: details.date !== undefined ? details.date : event.date,
+                        observation: details.observation !== undefined ? details.observation : event.observation,
+                    }
+                    : event
+            );
+
+            console.log('updatedEvents', updatedEvents)
+
+            return {
+                events: updatedEvents,
+            };
+        });
+    },
 });
