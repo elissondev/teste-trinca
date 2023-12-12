@@ -7,7 +7,7 @@ interface Props {
 export default function ParticipantsListHeader({nameSpace}: Props) {
     return (
         <div className={`grid ${styles.headerList}`}>
-            <div className="col-12 col-md-8 col-lg-4">
+            <div className={`col-12 col-md-8 ${nameSpace === 'eventDetails' ? 'col-lg-3' : 'col-lg-2' }`}>
                 Participante
             </div>
             <div className="col-12 col-md-8 col-lg-3 text-center">
@@ -16,7 +16,7 @@ export default function ParticipantsListHeader({nameSpace}: Props) {
             <div className="col-12 col-md-8 col-lg-3 text-center">
                 Valor sem bebida
             </div>
-            <div className="col-12 col-md-8 col-lg-2 text-right">
+            <div className={`col-12 col-md-8 ${nameSpace === 'eventDetails' ? 'col-lg-3' : 'col-lg-2' }`}>
                 {nameSpace === 'eventDetails' && 'Contribuição'}
 
             </div>

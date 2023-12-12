@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import styles from "@/app/agenda/novo-evento/ParticipantsList/ParticipantsList.module.scss";
 import Input from "@/components/Input";
 import {useStore} from "@/store";

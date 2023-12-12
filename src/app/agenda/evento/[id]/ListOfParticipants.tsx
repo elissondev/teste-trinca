@@ -1,9 +1,9 @@
 "use client";
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styles from "./Id.module.scss";
-import {IEvent, IParticipant} from "@/types";
 import {Checkbox} from "@/components/Checkbox";
 import {useStore} from "@/store";
+import {IParticipant} from "@/types";
 
 interface Props {
     eventId: any
@@ -22,10 +22,19 @@ export default function ListOfParticipants({eventId, participant}: Props) {
         store.updateContributionAmount(eventId, participant.id, value, "contributionAmount");
     };
 
+    const handleRemoveParticipant = (participantId: number) => {
+        store.removeParticipantFromEvent(eventId, participantId)
+    };
+
+    const handleKeyPress = (event: any) => {
+        if (event.key === 'Enter') {
+            event.target.blur(); // Remove o foco do input
+        }
+    };
 
     return (
         <div key={participant.id} className={`grid ${styles.list}`}>
-            <div className="col-12 col-md-8 col-lg-4">
+            <div className="col-12 col-md-8 col-lg-3">
                 <Checkbox
                     checked={participant.isItPaid || false}
                     onChange={handlePayment}
@@ -39,7 +48,7 @@ export default function ListOfParticipants({eventId, participant}: Props) {
             <div className="col-12 col-md-8 col-lg-3 text-center">
                 R${participant.priceWithoutDrink}
             </div>
-            <div style={{ textAlign: 'right' }} className="col-12 col-md-8 col-lg-2">
+            <div className="col-12 col-md-8 col-lg-2">
                 {editValue ? (
                     <div className={styles.inputContainer}>
                         <input
@@ -51,6 +60,7 @@ export default function ListOfParticipants({eventId, participant}: Props) {
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                                 handleUpdateValue(Number(e.target.value))
                             }
+                            onKeyPress={handleKeyPress}
                         />
                     </div>
                 ) : (
@@ -61,6 +71,12 @@ export default function ListOfParticipants({eventId, participant}: Props) {
             R${participant.contributionAmount}
           </span>
                 )}
+
+            </div>
+            <div className="col-12 col-md-8 col-lg-1 text-right">
+                <button title={`Remover ${participant.name}`} className={styles.removeBtn} onClick={() => handleRemoveParticipant(participant.id)}>
+                    X
+                </button>
             </div>
         </div>
     );

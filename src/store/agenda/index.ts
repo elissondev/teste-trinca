@@ -13,6 +13,7 @@ export interface AgendaSliceState {
     addEvent: (events: IEvent) => void;
     getEventById: (id: any) => any;
     updateContributionAmount: TypeUpdateContributionAmount;
+    removeParticipantFromEvent: (eventId: any, participantId: any) => void
 }
 
 const createUpdatedParticipant = (
@@ -51,14 +52,17 @@ export const createAgendaSlice = (
         get().events.find((event: IEvent) => event.id === eventId),
     updateContributionAmount: (eventId, participantId, newAmount, nameSpace) =>
         set((state) => {
+
+            // Pega o evento a ser atualizado.
             const eventToUpdate = state.events.find(
                 (event: IEvent) => event.id === eventId
             );
 
             if (!eventToUpdate) {
-                return state;
+                return state;  // Evento não encontrado, não fazemos nada (apenas retorna o estado atual)
             }
 
+            // Atualiza o estado do contributionAmount ou isItPaid da lista dos participantes do evento em questão, com base no nameSpace.
             const updatedParticipants = eventToUpdate.participants.map(
                 (participant: IParticipant) =>
                     participant.id === participantId
@@ -66,11 +70,13 @@ export const createAgendaSlice = (
                         : participant
             );
 
+            // Cria o payload atualizado do estado dos Eventos
             const updatedEvent = {
                 ...eventToUpdate,
                 participants: updatedParticipants,
             };
 
+            // Atualiza o evento em questão
             const updatedEvents = state.events.map((event) =>
                 event.id === eventId ? updatedEvent : event
             );
@@ -79,4 +85,38 @@ export const createAgendaSlice = (
                 events: updatedEvents,
             };
         }),
+    removeParticipantFromEvent: (eventId, participantId) =>
+        set((state: any) => {
+
+            // Pega o evento a ser atualizado.
+            const eventToUpdate = state.events.find(
+                (event: IEvent) => event.id === eventId
+            );
+
+            if (!eventToUpdate) {
+                return state;  // Evento não encontrado, não fazemos nada (apenas retorna o estado atual)
+            }
+
+            // Remove o participante da lista dos participants
+            const updatedParticipants = eventToUpdate?.participants
+                .filter((participant: IParticipant) =>
+                     participant.id !== participantId
+            );
+
+            // Cria o payload atualizado do estado dos Eventos
+            const updatedEvent = {
+                ...eventToUpdate,
+                participants: updatedParticipants,
+            };
+
+            // Atualiza o evento em questão
+            const updatedEvents = state.events.map((event: IEvent) =>
+                event.id === eventId ? updatedEvent : event
+            );
+
+            return {
+                events: updatedEvents,
+            };
+
+        })
 });
