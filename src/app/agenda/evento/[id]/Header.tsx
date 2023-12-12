@@ -41,6 +41,9 @@ export default function Header({event}: Props) {
                     />
                 </div>
             </div>
+            <div className="col-12">
+                {event.observation}
+            </div>
         </div>
     );
 }
