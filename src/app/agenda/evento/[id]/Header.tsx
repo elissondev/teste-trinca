@@ -85,6 +85,7 @@ export default function Header({event}: Props) {
                     </div>
                 ) : (
                     <div
+                        title="Clique para editar a data."
                         onClick={() => setEditDate(true)}
                         className={styles.date}>{
                         formattedDate(String(event.date))
@@ -107,10 +108,13 @@ export default function Header({event}: Props) {
                         />
                     </div>
                 ) : (
-                    <h2 onClick={() => {
-                        setEditTitle(true)
-
-                    }} className={styles.title}>{event.title}</h2>
+                    <h2
+                        title="Clique para editar o título."
+                        onClick={() => setEditTitle(true)}
+                        className={styles.title}
+                    >
+                        {event.title}
+                    </h2>
                 )}
             </div>
             <div className="col-4 col-md-4 col-lg-3 text-right">
@@ -149,7 +153,11 @@ export default function Header({event}: Props) {
                         />
                     </div>
                 ) : (
-                    <p onClick={() => setEditObservation(true)}>{event.observation}</p>
+                    <p
+                        title="Clique para editar a observação."
+                        className={styles.observation}
+                        onClick={() => setEditObservation(true)}
+                    >{event.observation}</p>
                 )}
 
             </div>

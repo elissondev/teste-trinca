@@ -1,3 +1,16 @@
+.hoverInputs {
+
+  margin-left: -10px;
+  padding-left: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 216, 54, 0.2);
+    border-radius: 5px;
+  }
+
+}
+
 .headerWrap {
   margin-bottom: 45px;
 }
@@ -6,12 +19,25 @@
   font-size: 28px;
   font-weight: 800;
   margin-bottom: 10px;
+  margin-left: -10px;
+  padding-left: 10px;
+  cursor: pointer;
+
+  @extend .hoverInputs
 }
 
 .title {
   font-size: 36px;
   font-weight: 700;
   opacity: 0.8;
+
+  @extend .hoverInputs
+}
+
+.observation {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  @extend .hoverInputs
 }
 
 .metrics {
@@ -84,8 +110,7 @@
   font-family: inherit;
   font-size: 16px;
   margin-left: -4px;
-  margin-top: -5px;
-  margin-bottom: -4px;
+  margin-bottom: 1px;
   width: 100%;
 }
 
