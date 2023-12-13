@@ -4,11 +4,12 @@ import {IChildren} from "@/types";
 
 interface Props extends IChildren{
     padding?: string
+    style?: any
 }
 
-export default function Card({ children,  padding}: Props){
+export default function Card({ children, style, padding}: Props){
     return (
-        <div className={styles.card} style={{padding}}>
+        <div className={styles.card} style={{...style, padding}}>
             {children}
         </div>
     );

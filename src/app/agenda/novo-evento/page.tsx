@@ -5,6 +5,7 @@ import Card from "@/components/Card";
 import EventParticipants from "./Steps/EventParticipants";
 import {useStore} from "@/store";
 import EventInformationForm from "./Steps/EventInformationForm";
+import {Loader} from "@/components/Loader";
 
 export default function NewEvent() {
     const [step, setStep] = useState(1)
