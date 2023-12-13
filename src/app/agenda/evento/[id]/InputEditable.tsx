@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import styles from "@/app/agenda/evento/[id]/Id.module.scss";
 import {useStore} from "@/store";
 import {IParticipant} from "@/types";
+import {formatarMoeda} from "@/utils";
 
 type Props = {
     eventId: any
@@ -56,7 +57,7 @@ export function InputEditable({eventId, participant, nameSpace}: Props) {
                         ${nameSpace === 'contributionAmount' ? participant.isItPaid ? styles.paid : '' : null}
                     `}
                 >
-                         R${participant[nameSpace]}
+                        {formatarMoeda(participant[nameSpace])}
                     </span>
             )}
         </>

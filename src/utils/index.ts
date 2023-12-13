@@ -9,3 +9,12 @@ export const formattedDate = (dateString: string) => {
         month: "2-digit",
     });
 };
+
+export function formatarMoeda(value: any) {
+    const formatoMoeda = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    })
+
+    return formatoMoeda.format(value);
+}

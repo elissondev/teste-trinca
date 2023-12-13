@@ -62,11 +62,6 @@ export default function Header({event}: Props) {
         };
     }, []);
 
-    useEffect(() => {
-        console.log('store.', event)
-    }, [event])
-
-
     return (
         <>
             <div className={`grid ${styles.headerWrap}`}>
@@ -130,7 +125,8 @@ export default function Header({event}: Props) {
                     </div>
                     <div>
                         <EventMetrics
-                            value={`R$${calculateTotalContribution()}`}
+                            itSCurrency
+                            value={`${calculateTotalContribution()}`}
                             icon="icon_money.png"
                             iconWSize={20}
                             iconHSize={20}

@@ -26,6 +26,7 @@ export default function ListOfParticipants({eventId, participant}: Props) {
         <div key={participant.id} className={`grid ${styles.list}`}>
             <div className="col-12 col-md-8 col-lg-3">
                 <Checkbox
+                    ellipsisLabel
                     checked={participant.isItPaid || false}
                     onChange={handlePayment}
                     name={participant.name}

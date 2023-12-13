@@ -20,7 +20,8 @@ export function EventCard({date, title, numberOfUsers, value}: IEvent) {
                         iconHSize={15.3}
                     />
                     <EventMetrics
-                        value={`R$${value}`}
+                        itSCurrency
+                        value={`${value}`}
                         icon="icon_money.png"
                         iconWSize={20}
                         iconHSize={20}

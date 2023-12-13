@@ -6,11 +6,12 @@ type Props = {
     onChange: (v: any) => void
     name: any
     value: any
+    ellipsisLabel?: boolean
 };
 
-export function Checkbox({checked, onChange, name, value}: Props) {
+export function Checkbox({checked, onChange, name, value, ellipsisLabel}: Props) {
     return (
-        <label className={styles.box}> {name}
+        <label title={name} className={`${styles.box} ${ellipsisLabel ? 'ellipsis' : ''}`}> {name}
             <input
                 type="checkbox"
                 checked={checked}

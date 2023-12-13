@@ -1,17 +1,19 @@
 import React from 'react';
 import Image from "next/image";
 import styles from "./EventMetrics.module.scss";
+import {formatarMoeda} from "@/utils";
 
 type Props = {
     value: any
     icon: string
     iconWSize: number
     iconHSize: number
+    itSCurrency?: boolean
 };
 
 
 
-export default function EventMetrics({value, icon, iconWSize, iconHSize}: Props) {
+export default function EventMetrics({value, icon, iconWSize, iconHSize, itSCurrency}: Props) {
     return (
         <div className={styles.wrap}>
             <Image
@@ -20,7 +22,7 @@ export default function EventMetrics({value, icon, iconWSize, iconHSize}: Props)
                 width={iconWSize}
                 height={iconHSize}
             />
-            {value}
+            {itSCurrency ? formatarMoeda(value) : value}
         </div>
     );
 }

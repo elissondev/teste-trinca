@@ -60,6 +60,13 @@ button {
   position: relative;
 }
 
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+
 .lds-ellipsis-wrap {
   &.center {
     position: absolute;
