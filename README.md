@@ -4,6 +4,8 @@
 
 Esse projeto é baseado em [Next.js](https://nextjs.org/) e foi iniciado via [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Visualize o resultado do teste [clicando aqui.](https://teste-trinca.vercel.app/)
+
 ## Introdução
 
 Primeiro, execute o servidor de desenvolvimento:
