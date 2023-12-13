@@ -81,6 +81,10 @@
   margin: 120px auto 0;
 }
 
+body.dark-mode .logo{
+  filter: invert(1);
+}
+
 .link {
   margin-top: 30px;
   display: block;

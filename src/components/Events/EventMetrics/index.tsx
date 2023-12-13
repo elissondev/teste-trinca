@@ -22,7 +22,7 @@ export default function EventMetrics({value, icon, iconWSize, iconHSize, itSCurr
                 width={iconWSize}
                 height={iconHSize}
             />
-            {itSCurrency ? formatarMoeda(value) : value}
+            <span className="text-invert">{itSCurrency ? formatarMoeda(value) : value}</span>
         </div>
     );
 }

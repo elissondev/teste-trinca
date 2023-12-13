@@ -1,6 +1,6 @@
 "use client"
-import { useEffect, useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import Image from "next/image";
 export default function ThemeSwitcher() {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -37,8 +37,30 @@ export default function ThemeSwitcher() {
     }, [isDarkMode]);
 
     return (
-        <button onClick={toggleDarkMode}>
-            {isDarkMode ? 'Desativar Modo Escuro' : 'Ativar Modo Escuro'}
-        </button>
+        <div className="theme-switcher" title={isDarkMode ? 'Desativar Modo Escuro' : 'Ativar Modo Escuro'}>
+            {isDarkMode ?
+                <button
+                    onClick={toggleDarkMode}
+                    className="dark">
+                    <Image
+                        src="/images/contrast.png"
+                        alt="Desativar modo escuro"
+                        width={28}
+                        height={28}
+                        priority
+                    />
+                </button>
+                :
+                <button onClick={toggleDarkMode} className="light">
+                    <Image
+                        src="/images/contrast.png"
+                        alt="Ativar modo escuro"
+                        width={28}
+                        height={28}
+                        priority
+                    />
+                </button>
+            }
+        </div>
     );
 };

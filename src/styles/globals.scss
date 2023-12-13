@@ -90,6 +90,36 @@ label {
   color: var(--label);
 }
 
+.theme-switcher {
+  position: absolute;
+  z-index: 1;
+  right: 5px;
+  top: 5px;
+  background: transparent;
+
+  button {
+    background: transparent;
+    border-radius: 30px;
+    padding: 6px;
+
+    img {
+      margin-top: 2px;
+      margin-bottom: -1px;
+    }
+  }
+
+  .dark {
+    background-color: var(--background-color);
+    img {
+      filter: invert(1);
+    }
+  }
+
+  .light {
+    background-color: var(--background-color);
+  }
+}
+
 .text-invert {
   color: var(--text-invert)
 }

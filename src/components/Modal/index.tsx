@@ -22,8 +22,8 @@ const Modal = ({ onClose, children, title }: Props) => {
                             x
                         </a>
                     </div>
-                    {title && <h1>{title}</h1>}
-                    <div className={styles.modalBody}>{children}</div>
+                    <span className="text-invert">{title && <h1>{title}</h1>}</span>
+                    <div className={`${styles.modalBody} text-invert`}>{children}</div>
                 </div>
             </div>
         </div>

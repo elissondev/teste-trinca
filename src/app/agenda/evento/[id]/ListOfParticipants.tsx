@@ -33,13 +33,13 @@ export default function ListOfParticipants({eventId, participant}: Props) {
                     value={participant.id}
                 />
             </div>
-            <div className="col-12 col-md-8 col-lg-3 text-center">
+            <div className="col-12 col-md-8 col-lg-3 text-center text-invert">
                 <InputEditable eventId={eventId} participant={participant} nameSpace="priceWithDrink"/>
             </div>
-            <div className="col-12 col-md-8 col-lg-3 text-center">
+            <div className="col-12 col-md-8 col-lg-3 text-center text-invert">
                 <InputEditable eventId={eventId} participant={participant} nameSpace="priceWithoutDrink"/>
             </div>
-            <div className="col-12 col-md-8 col-lg-2">
+            <div className="col-12 col-md-8 col-lg-2 text-invert">
                 <InputEditable eventId={eventId} participant={participant} nameSpace="contributionAmount"/>
             </div>
             <div className="col-12 col-md-8 col-lg-1 text-right">

@@ -59,7 +59,7 @@ export default function Events({params: {id}}: Props) {
                 )}
 
             </Card>
-            <div style={{marginTop: 20}}>
+            <div className="text-invert" style={{marginTop: 20}}>
                 <Link href="/agenda/eventos">← Voltar</Link>
                 <button
                     onClick={() => setShowModal(true)}

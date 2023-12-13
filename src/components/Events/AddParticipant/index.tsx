@@ -102,7 +102,7 @@ export default function AddParticipant({event}: Props) {
     return (
         <div className={styles.addParticipant}>
             <Select
-                className="react-select"
+                className="react-select text-invert"
                 placeholder="Incluir participante..."
                 isSearchable
                 options={formattedData()}
