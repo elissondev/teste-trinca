@@ -12,19 +12,17 @@ export const metadata: Metadata = {
     description: 'Gerenciamento dos churrascos da galera da Trinca.',
 }
 
-export default function RootLayout({
-                                       children,
-                                   }: {
+export default function RootLayout({children}: {
     children: React.ReactNode
 }) {
     return (
         <html lang="pt-BR">
         <body className={raleway.className}>
-            <div id="modal-root"></div>
-            <Provider>
-                <ThemeSwitcher />
-                {children}
-            </Provider>
+        <div id="modal-root"></div>
+        <Provider>
+            <ThemeSwitcher/>
+            {children}
+        </Provider>
         </body>
         </html>
     )

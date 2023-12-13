@@ -4,7 +4,6 @@ import EventMetrics from "@/components/Events/EventMetrics";
 import {formattedDate} from "@/utils";
 import {IEvent} from "@/types";
 import {useStore} from "@/store";
-import {InputEditable} from "@/app/agenda/evento/[id]/InputEditable";
 
 interface Props {
     event: IEvent
