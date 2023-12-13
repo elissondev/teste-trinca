@@ -26,10 +26,10 @@ export function ListITem() {
             {event.participants.map((participant) => (
                 <li className={styles.listItem} key={participant.id}>
                     <div className="grid">
-                        <div className="col-12 col-sm-4 col-lg-4 text-invert">
+                        <div className="col-9 col-sm-4 col-lg-4 text-invert">
                             <strong>{participant.name}</strong>
                         </div>
-                        <div className="col-12 col-sm-3 col-lg-3">
+                        <div className="col-9 col-sm-3 col-lg-3">
                             <Input
                                 className={styles.input}
                                 label="Com Bebida"
@@ -44,7 +44,7 @@ export function ListITem() {
                                 }
                             />
                         </div>
-                        <div className="col-12 col-sm-3 col-lg-3">
+                        <div className="col-9 col-sm-3 col-lg-3">
                             <Input
                                 className={styles.input}
                                 label="Sem Bebida"
@@ -59,7 +59,7 @@ export function ListITem() {
                                 }
                             />
                         </div>
-                        <div style={{ textAlign: 'right' }} className="col-12 col-sm-1 col-lg-2">
+                        <div style={{ textAlign: 'right' }} className="col-5 col-sm-1 col-lg-2">
                             <button className={styles.removeBtn} onClick={() => handleRemoveParticipant(participant.id)}>
                                 X
                             </button>
