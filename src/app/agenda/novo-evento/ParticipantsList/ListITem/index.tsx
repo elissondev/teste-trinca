@@ -26,7 +26,7 @@ export function ListITem() {
             {event.participants.map((participant) => (
                 <li className={styles.listItem} key={participant.id}>
                     <div className="grid">
-                        <div className="col-12 col-md-8 col-lg-4">
+                        <div className="col-12 col-md-8 col-lg-4 text-invert">
                             <strong>{participant.name}</strong>
                         </div>
                         <div className="col-12 col-md-8 col-lg-3">

@@ -2,6 +2,8 @@ import type {Metadata} from 'next'
 import {Raleway} from 'next/font/google'
 import '@/styles/main.scss'
 import {Provider} from "@/utils/Providers";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import React from "react";
 
 const raleway = Raleway({subsets: ['latin']})
 
@@ -20,6 +22,7 @@ export default function RootLayout({
         <body className={raleway.className}>
             <div id="modal-root"></div>
             <Provider>
+                <ThemeSwitcher />
                 {children}
             </Provider>
         </body>

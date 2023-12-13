@@ -25,7 +25,7 @@ export default function EventParticipants({onBack}: Props) {
 
     return (
         <>
-            <h2 className="text-center">Novo Churras - Participantes</h2>
+            <h2 className="text-center text-invert">Novo Churras - Participantes</h2>
             <br/><br/>
 
             <AddParticipant />
@@ -34,7 +34,7 @@ export default function EventParticipants({onBack}: Props) {
 
             <Button disabled={!event.participants.length} onClick={() => handleSaveEvent()}>Salvar</Button>
 
-            <a className="link" onClick={() => onBack()}>Voltar</a>
+            <a className="link text-invert" onClick={() => onBack()}>Voltar</a>
 
         </>
     );

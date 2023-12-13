@@ -65,7 +65,7 @@ export default function Header({event}: Props) {
     return (
         <>
             <div className={`grid ${styles.headerWrap}`}>
-                <div className="col-8 col-md-8 col-lg-9">
+                <div className="col-8 col-md-8 col-lg-9 text-invert">
                     {editDate ? (
                         <div style={{display: 'inline-block'}} className={styles.inputContainer}>
                             <input
@@ -136,7 +136,7 @@ export default function Header({event}: Props) {
             </div>
             <div>
                 {editObservation ? (
-                    <div className={styles.inputContainer}>
+                    <div className={`${styles.inputContainer}`}>
                         <input
                             className={styles.inputObservation}
                             placeholder="Digite a observação..."
@@ -153,7 +153,7 @@ export default function Header({event}: Props) {
                 ) : (
                     <p
                         title="Clique para editar a observação."
-                        className={styles.observation}
+                        className={`${styles.observation} text-invert`}
                         onClick={() => setEditObservation(true)}
                     >{event.observation}</p>
                 )}

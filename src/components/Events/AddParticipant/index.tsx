@@ -102,6 +102,7 @@ export default function AddParticipant({event}: Props) {
     return (
         <div className={styles.addParticipant}>
             <Select
+                className="react-select"
                 placeholder="Incluir participante..."
                 isSearchable
                 options={formattedData()}

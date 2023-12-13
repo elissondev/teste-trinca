@@ -1,9 +1,37 @@
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #{$primary-color};
-    --secondary-color: #{$secondary-color};
-    --background-color: #{darken($background-color, 80)};
-    --text-color: #{lighten($text-color, 30)};
-    --text-button-color: $text-button-color
-  }
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --background-color: #{$background-color};
+  --bg-button-color: #{$secondary-color};
+  --text-button-color: #{$text-button-color};
+  --text-color: #{$text-color};
+  --add-barbecue: #F1F1F1;
+  --add-barbecue-hover: var(--primary-color);
+  --add-barbecue-hover-icon: #F1F1F1;
+  --text-invert: #{$secondary-color};
+  --alwaysBlack: #000;
+  --input: #fff;
+  --select-border: hsl(0, 0%, 80%);
+  --label: black;
+  --participants-input: #F1F1F1;
+  --card-bg: #fff
 }
+
+body.dark-mode {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{lighten($secondary-color, 30)};
+  --background-color: #{darken($background-color, 80)};
+  --text-button-color: black;
+  --bg-button-color: #{$primary-color};
+  --add-barbecue: #413e3e;
+  --add-barbecue-hover: #4b4646;
+  --add-barbecue-hover-icon: var(--primary-color);
+  --text-invert: #fff;
+  --alwaysBlack: #000;
+  --input: #3b3b3b;
+  --select-border: transparent;
+  --label: #fff;
+  --participants-input: #3b3b3b;
+  --card-bg: #4b4646
+}
+

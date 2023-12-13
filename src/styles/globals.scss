@@ -81,6 +81,19 @@ button {
   }
 }
 
+input, textarea {
+  background-color: var(--input);
+  color: var(--text-invert);
+}
+
+label {
+  color: var(--label);
+}
+
+.text-invert {
+  color: var(--text-invert)
+}
+
 .lds-ellipsis {
   display: inline-block;
   position: relative;

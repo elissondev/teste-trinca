@@ -47,7 +47,7 @@ export default function EventInformationForm({onSubmit}: Props) {
 
     return (
         <>
-            <h2 className="text-center">Novo Churras - Informações</h2>
+            <h2 className="text-center text-invert">Novo Churras - Informações</h2>
             <br/><br/>
             <form onSubmit={handleSubmit}>
                 <div className="form-control">
@@ -84,7 +84,7 @@ export default function EventInformationForm({onSubmit}: Props) {
 
             </form>
 
-            <Link className="link" href="/agenda/eventos">Cancelar</Link>
+            <Link className="link text-invert" href="/agenda/eventos">Cancelar</Link>
         </>
     );
 }
