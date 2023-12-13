@@ -1,5 +1,4 @@
 export const formattedDate = (dateString: string) => {
-    console.log('dateString', dateString)
     // Adiciona a hora de meia-noite à string de data
     const midnightDate = new Date(dateString + 'T00:00:00');
 

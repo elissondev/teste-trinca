@@ -24,10 +24,6 @@ export default function NewEvent() {
         }
     }
 
-    useEffect(() => {
-        console.log('event', event)
-    }, [event])
-
 
     return (
       <div className="container">

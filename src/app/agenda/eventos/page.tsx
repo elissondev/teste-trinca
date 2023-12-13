@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, {useEffect} from "react";
 import { useStore } from "@/store"
 import { EventCard } from "@/components/Events/EventCard";
 import AddBarbecue from "@/components/Events/AddBarbecue";
@@ -15,6 +15,11 @@ export default function Events() {
             0
         );
     }
+
+    useEffect(() => {
+        // @ts-ignore
+        useStore.persist.rehydrate()
+    }, []);
 
     return (
         <>
