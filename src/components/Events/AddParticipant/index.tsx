@@ -1,39 +1,39 @@
+"use client"
 import React, {useState} from 'react';
+import { useQuery } from '@tanstack/react-query'
 import Select from "react-select";
-import {IEvent, IParticipant, ISelect} from "@/types";
-import styles from "./Id.module.scss";
+import {IEvent, IParticipant, ISelect, IUser} from "@/types";
+import styles from "./AddParticipant.module.scss";
 import {useStore} from "@/store";
 
 type Props = {
     event?: IEvent
 };
 
+async function fetchUsers() {
+    const res = await fetch('http://localhost:3000/api/users')
+
+    if (!res.ok) throw new Error('Serviço indisponível. Tente novamente mais tarde.')
+
+    return res.json()
+}
+
 export default function AddParticipant({event}: Props) {
     const store = useStore();
     const [selectedOption, setSelectedOption] = useState<any[]>([]);
+    const { data } = useQuery({
+        queryKey: ['users'],
+        queryFn: fetchUsers,
+    })
 
-    // Quando criado novo evento, então é store.event
-    // Quando é detalhes do evento, então vem do argumento event
-
-    const data = [
-        {
-            value: 1,
-            label: "João Carlos",
-        },
-        {
-            value: 2,
-            label: "Ana Maria",
-        },
-        {
-            value: 3,
-            label: "Aline Oliveira",
-        }
-    ]
+    // Quando novo evento, store.event
+    // Quando detalhes do evento, event
 
     const handleStopSelection = (eventData: IEvent) => {
         return eventData.participants?.find(f => f.id === eventData.value)
     }
 
+    // Adiciona um participante na lista de participantes, ao selecionar-lo na lista
     const handleSelectParticipant = (v: any) => {
 
         // Usado para limpar o campo após a seleção.
@@ -69,14 +69,15 @@ export default function AddParticipant({event}: Props) {
         setTimeout(() => setSelectedOption([]), 300)
     }
 
-    const checksIfAParticipantIsAlreadySelected = (store: IEvent, item: ISelect) => {
-       return store.participants.length &&
-           store.participants
-               .some((option) => option.id === item.value);
-    }
+    // Verifica se um participante já está na lista
+    const checksIfAParticipantIsAlreadySelected = (store: IEvent, item: IUser) =>
+        store.participants.length &&
+            store.participants
+                .some((option) => option.id === item.id);
 
-    // Verifica se um participante já está selecionado
-    const isItemDisabled = (item: ISelect) => {
+
+    // Verifica se um participante já está selecionado para desativa-lo da lista
+    const isItemDisabled = (item: IUser) => {
         if (!event)
             return checksIfAParticipantIsAlreadySelected(store.event, item)
         if (event)
@@ -84,18 +85,26 @@ export default function AddParticipant({event}: Props) {
     };
 
     // Faz o mapeamento os dados e adiciona a propriedade isDisabled conforme necessário
-    const formattedData = data.map((item: any) => ({
-        ...item,
-        isDisabled: isItemDisabled(item),
-    }));
+    const formattedData = (): any[] => {
+        return data?.data.map((item: any) => {
+            const payload = {
+                label: item.name,
+                value: item.id
+            }
 
+            return {
+                ...payload,
+                isDisabled: isItemDisabled(item),
+            }
+        });
+    }
 
     return (
         <div className={styles.addParticipant}>
             <Select
                 placeholder="Incluir participante..."
                 isSearchable
-                options={formattedData}
+                options={formattedData()}
                 value={selectedOption}
                 onChange={v => handleSelectParticipant(v)}
             />

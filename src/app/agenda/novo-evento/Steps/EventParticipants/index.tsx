@@ -4,7 +4,7 @@ import ParticipantsList from "@/app/agenda/novo-evento/ParticipantsList";
 import Button from "@/components/Button";
 import {useStore} from "@/store";
 import {useRouter} from "next/navigation";
-import AddParticipant from "@/app/agenda/evento/[id]/AddParticipant";
+import AddParticipant from "@/components/Events/AddParticipant";
 
 type Props = {
     onBack: () => void

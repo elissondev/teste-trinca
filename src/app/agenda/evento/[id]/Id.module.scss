@@ -97,6 +97,7 @@
   background-color: transparent;
   opacity: 0;
   margin-top: 6px;
+  margin-right: 20px;
 }
 
 .inputTitle {
@@ -139,4 +140,9 @@
   font-size: 19px;
   text-align: center;
   height: 24px;
+}
+
+.participantsWrap {
+  overflow: auto;
+  max-height: 40vh;
 }

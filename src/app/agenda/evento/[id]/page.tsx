@@ -12,7 +12,8 @@ import Link from "next/link";
 import {useRouter} from "next/navigation";
 import Button from "@/components/Button";
 import toast from "react-hot-toast";
-import AddParticipant from "@/app/agenda/evento/[id]/AddParticipant";
+import AddParticipant from "@/components/Events/AddParticipant";
+import styles from "./Id.module.scss"
 
 interface Props {
     params: {
@@ -48,10 +49,12 @@ export default function Events({params: {id}}: Props) {
                 ) : (
                     <>
                         <ParticipantsListHeader nameSpace="eventDetails"/>
-                        {event.participants?.length && event.participants?.map((participant: IParticipant) => (
-                            <ListOfParticipants key={participant.id} eventId={id} participant={participant}
-                            />
-                        ))}
+                        <div className={styles.participantsWrap}>
+                            {event.participants?.length && event.participants?.map((participant: IParticipant) => (
+                                <ListOfParticipants key={participant.id} eventId={id} participant={participant}
+                                />
+                            ))}
+                        </div>
                     </>
                 )}
 

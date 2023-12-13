@@ -12,6 +12,7 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.13.4",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
@@ -20,6 +21,7 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.12.1",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
