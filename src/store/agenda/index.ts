@@ -61,11 +61,14 @@ export const createAgendaSlice = (
 ): AgendaSliceState => ({
     events: [],
     addEvent: (newEvent: IEvent) =>
-        set((prevState: AgendaSliceState) => ({
-            events: [...prevState.events, newEvent],
-        })),
-    getEventById: (eventId: number) =>
-        get().events.find((event: IEvent) => event.id === eventId),
+        set((prevState: AgendaSliceState) => {
+            // Adiciona o novo evento à lista existente
+            const updatedEvents = [...prevState.events, newEvent];
+            // Ordena os eventos pela data
+            updatedEvents.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+            return { events: updatedEvents };
+        }),
+    getEventById: (eventId: any) => get().events.find((event: IEvent) => event.id === eventId),
     updateContributionAmount: (eventId, participantId, newAmount, nameSpace) =>
         set((state) => {
 
@@ -172,6 +175,9 @@ export const createAgendaSlice = (
                     }
                     : event
             );
+
+            // Ordena os eventos pela data
+            updatedEvents.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
             return {
                 events: updatedEvents,
