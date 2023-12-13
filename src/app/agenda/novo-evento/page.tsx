@@ -1,5 +1,5 @@
 "use client";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import Card from "@/components/Card";
 import EventParticipants from "./Steps/EventParticipants";
@@ -9,7 +9,7 @@ import {Loader} from "@/components/Loader";
 
 export default function NewEvent() {
     const [step, setStep] = useState(1)
-
+    const event = useStore((state) => state.event)
     const handleSteps = () => {
         setStep(step + 1)
     }
@@ -23,6 +23,11 @@ export default function NewEvent() {
             default:  return <h1>Erro 404</h1>
         }
     }
+
+    useEffect(() => {
+        console.log('event', event)
+    }, [event])
+
 
     return (
       <div className="container">

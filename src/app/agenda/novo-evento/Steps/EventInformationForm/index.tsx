@@ -14,9 +14,9 @@ export default function EventInformationForm({onSubmit}: Props) {
     const updateEvent = useStore(state => state.updateEvent)
 
     const event = useStore((state) => state.event)
-    const [date, setDate] = useState<Date | string>('')
-    const [title, setTitle] = useState<string>('')
-    const [observation, setObservation] = useState<string>('')
+    const [date, setDate] = useState<Date | string>(event.date)
+    const [title, setTitle] = useState<string>(event.title)
+    const [observation, setObservation] = useState<string>(event.observation || '')
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
