@@ -11,7 +11,7 @@ type Props = {
 };
 
 async function fetchUsers() {
-    const res = await fetch('http://localhost:3000/api/users')
+    const res = await fetch(`${process.env.API_URL}/users`)
 
     if (!res.ok) throw new Error('Serviço indisponível. Tente novamente mais tarde.')
 
