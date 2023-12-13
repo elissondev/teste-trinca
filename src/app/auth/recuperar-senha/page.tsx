@@ -19,6 +19,7 @@ export default function RecoverPassword() {
         <form onSubmit={handleSubmit}>
             <div className="form-control">
                 <Input
+                    labelClass="always-black"
                     label="Recuperar senha"
                     placeholder="Digite seu e-mail"
                     type="email"

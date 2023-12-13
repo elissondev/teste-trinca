@@ -28,6 +28,7 @@ export default function Login() {
                 <form onSubmit={handleSubmit}>
                     <div className="form-control">
                         <Input
+                            labelClass="always-black"
                             label="Login"
                             placeholder="e-mail"
                             type="email"
@@ -38,6 +39,7 @@ export default function Login() {
                     </div>
                     <div className="form-control">
                         <Input
+                            labelClass="always-black"
                             label="Senha"
                             placeholder="senha"
                             type="password"

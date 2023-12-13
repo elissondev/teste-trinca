@@ -81,6 +81,8 @@ button {
   }
 }
 
+
+
 input, textarea {
   background-color: var(--input);
   color: var(--text-invert);
@@ -122,6 +124,10 @@ label {
 
 .text-invert {
   color: var(--text-invert)
+}
+
+.always-black {
+  color: var(--alwaysBlack)
 }
 
 .lds-ellipsis {
