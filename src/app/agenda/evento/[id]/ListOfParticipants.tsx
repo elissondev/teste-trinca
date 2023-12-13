@@ -5,6 +5,7 @@ import {Checkbox} from "@/components/Checkbox";
 import {useStore} from "@/store";
 import {IParticipant} from "@/types";
 import {InputEditable} from "@/app/agenda/evento/[id]/InputEditable";
+import {addEllipsis} from "@/utils";
 
 interface Props {
     eventId: any
@@ -26,7 +27,6 @@ export default function ListOfParticipants({eventId, participant}: Props) {
         <div key={participant.id} className={`grid ${styles.list}`}>
             <div className="col-12 col-sm-4">
                 <Checkbox
-                    ellipsisLabel
                     checked={participant.isItPaid || false}
                     onChange={handlePayment}
                     name={participant.name}

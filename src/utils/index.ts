@@ -17,3 +17,11 @@ export function formatarMoeda(value: any) {
 
     return formatoMoeda.format(value);
 }
+
+export function addEllipsis(text: string, limit: number) {
+    if (text.length > limit) {
+        return text.substring(0, limit) + '...';
+    } else {
+        return text;
+    }
+}

@@ -21,7 +21,7 @@ async function fetchUsers() {
 export default function AddParticipant({event}: Props) {
     const store = useStore();
     const [selectedOption, setSelectedOption] = useState<any[]>([]);
-    const { data } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: fetchUsers,
     })
@@ -102,6 +102,9 @@ export default function AddParticipant({event}: Props) {
     return (
         <div className={styles.addParticipant}>
             <Select
+                noOptionsMessage={() => 'Nenhum dado encontrado.'}
+                loadingMessage={() => 'Carregando...'}
+                isLoading={isLoading}
                 className="react-select text-invert"
                 placeholder="Incluir participante..."
                 isSearchable

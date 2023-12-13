@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from "./Checkbox.module.scss";
+import {addEllipsis} from "@/utils";
 
 type Props = {
     checked: boolean
@@ -11,7 +12,7 @@ type Props = {
 
 export function Checkbox({checked, onChange, name, value, ellipsisLabel}: Props) {
     return (
-        <label title={name} className={`${styles.box} ${ellipsisLabel ? 'ellipsis' : ''}`}> {name}
+        <label title={name} className={`${styles.box}`}> {addEllipsis(name, 15)}
             <input
                 type="checkbox"
                 checked={checked}
