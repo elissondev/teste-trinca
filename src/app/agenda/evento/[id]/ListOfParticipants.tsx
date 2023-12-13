@@ -24,7 +24,7 @@ export default function ListOfParticipants({eventId, participant}: Props) {
 
     return (
         <div key={participant.id} className={`grid ${styles.list}`}>
-            <div className="col-12 col-md-8 col-lg-3">
+            <div className="col-12 col-sm-4">
                 <Checkbox
                     ellipsisLabel
                     checked={participant.isItPaid || false}
@@ -33,16 +33,16 @@ export default function ListOfParticipants({eventId, participant}: Props) {
                     value={participant.id}
                 />
             </div>
-            <div className="col-12 col-md-8 col-lg-3 text-center text-invert">
+            <div className="col-4 col-sm-2 text-center text-invert">
                 <InputEditable eventId={eventId} participant={participant} nameSpace="priceWithDrink"/>
             </div>
-            <div className="col-12 col-md-8 col-lg-3 text-center text-invert">
+            <div className="col-4 col-sm-2 text-right text-invert">
                 <InputEditable eventId={eventId} participant={participant} nameSpace="priceWithoutDrink"/>
             </div>
-            <div className="col-12 col-md-8 col-lg-2 text-invert">
+            <div className="col-5 col-sm-3 text-left text-sm-right text-invert">
                 <InputEditable eventId={eventId} participant={participant} nameSpace="contributionAmount"/>
             </div>
-            <div className="col-12 col-md-8 col-lg-1 text-right">
+            <div className="col-6 col-sm-1 text-center text-sm-right">
                 <button
                     title={`Remover ${participant.name}`}
                     className={styles.removeBtn}

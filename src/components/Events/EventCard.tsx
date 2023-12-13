@@ -10,9 +10,9 @@ export function EventCard({date, title, numberOfUsers, value}: IEvent) {
     return (
         <div className={styles.wrap}>
             <Card padding={"24px"}>
-                <h2 className={styles.date}>{formattedDate(String(date))}</h2>
-                <p className={styles.title}>{title}</p>
-                <div className={styles.info}>
+                <h2 className={`${styles.date} text-invert`}>{formattedDate(String(date))}</h2>
+                <p className={`${styles.title} text-invert`}>{title}</p>
+                <div className={`${styles.info} text-invert`}>
                     <EventMetrics
                         value={numberOfUsers}
                         icon="icon_people.png"

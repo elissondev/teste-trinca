@@ -65,7 +65,7 @@ export default function Header({event}: Props) {
     return (
         <>
             <div className={`grid ${styles.headerWrap}`}>
-                <div className="col-8 col-md-8 col-lg-9 text-invert">
+                <div className="col-12 col-sm-6 col-lg-9 text-left text-invert">
                     {editDate ? (
                         <div style={{display: 'inline-block'}} className={styles.inputContainer}>
                             <input
@@ -114,7 +114,7 @@ export default function Header({event}: Props) {
                         </h2>
                     )}
                 </div>
-                <div className="col-4 col-md-4 col-lg-3 text-right">
+                <div className="col-12 col-sm-6 col-lg-3 text-left text-sm-right">
                     <div className={styles.metrics}>
                         <EventMetrics
                             value={event.participants.length}

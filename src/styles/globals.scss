@@ -179,3 +179,46 @@ label {
     transform: translate(24px, 0);
   }
 }
+
+.d-none {
+  display: none !important;
+}
+
+
+
+
+@media (min-width: 768px) {
+  .d-sm-block {
+    display: block !important;
+  }
+
+  .d-sm-grid {
+    display: grid !important;
+  }
+
+  .text-sm-right {
+    text-align: right;
+  }
+
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b2b2b2;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
